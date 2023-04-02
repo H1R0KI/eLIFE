@@ -22,7 +22,7 @@
 
 ## 設計書
 ER図<br>
-![Uploading eLIFE_ER図.png…]()
+![eLIFE_ER図](https://user-images.githubusercontent.com/122168203/229338264-d4429149-dd2b-435f-af39-c21cf6586af8.png)
 
 ## 開発環境
 - OS：Linux(CentOS)
