@@ -21,7 +21,8 @@
 ・生活の中であると便利なモノが知りたい、共有したい時<br>
 
 ## 設計書
-現在作成中です。
+ER図<br>
+![Uploading eLIFE_ER図.png…]()
 
 ## 開発環境
 - OS：Linux(CentOS)
