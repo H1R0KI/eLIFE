@@ -24,6 +24,9 @@
 ER図<br>
 ![eLIFE_ER図](https://user-images.githubusercontent.com/122168203/229338264-d4429149-dd2b-435f-af39-c21cf6586af8.png)
 
+テーブル定義書<br>
+https://docs.google.com/spreadsheets/d/1VfGacB8YgY1n2w1krmQK4nCr-_JHJxKLAw7_YX8bljQ/edit#gid=856357510
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
