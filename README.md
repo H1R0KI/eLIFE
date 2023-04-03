@@ -15,8 +15,7 @@
 
 ### ターゲットユーザー
 ・これから新生活を迎える方<br>
-・始めて一人暮らしをする方一人暮らしを始めた当時<br>
-・仕事と家事の両立ができていない方<br>
+・初めて一人暮らしをする方<br>
 ・日常生活を豊かにしたい方
 
 ### 主な利用シーン
@@ -33,6 +32,9 @@ https://docs.google.com/spreadsheets/d/1VfGacB8YgY1n2w1krmQK4nCr-_JHJxKLAw7_YX8b
 
 ワイヤーフレーム<br>
 https://app.diagrams.net/#G1LGglMvn-h1h3y7jOM1uIhamn-hLjQxJW
+
+画面遷移図<br>
+![eLIFE_画面遷移図](https://user-images.githubusercontent.com/122168203/229492277-0e4b0b79-0b65-4575-b3d5-56d44e79f108.png)
 
 ## 開発環境
 - OS：Linux(CentOS)
