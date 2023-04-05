@@ -4,6 +4,13 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def self.guest
+    find_or_create_by!(name: 'guestmember' ,email: 'guest@example.com') do |member|
+      member.password = SecureRandom.urlsafe_base64
+      member.name = "guestmember"
+    end
+  end
+
   enum age: { teens: 0, twenties: 1, thirties: 2, forties: 3, fifties: 4, sixties: 5}
   enum composition: { solitary: 0, couple: 1, family: 2, family_and_relative: 3, others: 4}
 
