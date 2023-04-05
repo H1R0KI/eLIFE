@@ -11,9 +11,13 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
   scope module: :public do
+
     #homes
     root to: 'homes#top'
     get '/about' => 'homes#about'
+
+    #posts
+    resources :posts,only: [:index,:show, :create, :update, :destroy]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
