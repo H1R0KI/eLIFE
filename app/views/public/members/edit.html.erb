@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <%= form_with model: @member do |f| %>
+    <div class="form-group">
+      <label for="name">ハンドルネーム</label>
+      <%= f.text_field :name, {class: "form-control name"} %>
+    </div>
+    <div class="form-group">
+      <label for="member_image">プロフィール画像</label>
+      <p><%= f.file_field :profile_image, accept: "image/*" %></p>
+    </div>
+    <div class="form-group">
+      <label for="user_introduction">自己紹介</label>
+      <%= f.text_area :introduction, {class: "form-control introduciton"} %>
+    </div>
+    <div class="form-group">
+      <%= f.submit "Update Member", class: "btn btn-secondary"%>
+    </div>
+    <% end %>
+  </div>
+</div>

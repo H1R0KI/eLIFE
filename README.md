@@ -30,9 +30,6 @@ ER図<br>
 テーブル定義書<br>
 https://docs.google.com/spreadsheets/d/1VfGacB8YgY1n2w1krmQK4nCr-_JHJxKLAw7_YX8bljQ/edit#gid=856357510
 
-ワイヤーフレーム<br>
-https://app.diagrams.net/#G1LGglMvn-h1h3y7jOM1uIhamn-hLjQxJW
-
 画面遷移図<br>
 ![eLIFE_画面遷移図](https://user-images.githubusercontent.com/122168203/229492277-0e4b0b79-0b65-4575-b3d5-56d44e79f108.png)
 

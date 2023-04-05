@@ -1,4 +1,30 @@
-<p></p>
-<%= link_to "新規登録", new_member_registration_path %>
-<%= link_to "ログイン", member_session_path %>
-<%= link_to "ログアウト", destroy_member_session_path, method: :delete %>
+<nav class="navbar navbar-expand-lg bg-success">
+  <div class="collapse navbar-collapse">
+    <%= link_to "top", root_path %>
+    <div class="d-flex flex-column ml-auto">
+      <ul class="navbar-nav">
+        <% if member_signed_in? %>
+          <li>
+            <%= link_to "投稿一覧", posts_path, class:"btn btn-outline-success text-light" %>
+          </li>
+          <li>
+            <%= link_to "新規投稿", new_post_path, class:"btn btn-outline-success text-light" %>
+          </li>
+          <li>
+            <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class:"btn btn-outline-success text-light" %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "サイト概要", about_path, class:"btn btn-outline-success text-light" %>
+          </li>
+          <li>
+            <%= link_to "新規登録", new_member_registration_path, class:"btn btn-outline-success text-light" %>
+          </li>
+          <li>
+            <%= link_to "ログイン", member_session_path, class:"btn btn-outline-success text-light" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>
