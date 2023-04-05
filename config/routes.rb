@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about'
 
+    #members
+    resources :members,only: [:index, :edit, :show, :update]
+
     devise_scope :member do
       post 'members/guest_sign_in', to: 'members/sessions#guest_sign_in'
     end
