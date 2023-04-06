@@ -21,4 +21,8 @@
       <%= image_tag @post.get_image, size: "400x200" %>
     </div>
   </div>
+  <% if @post.member == current_member %>
+    <%= link_to "編集する", edit_post_path(@post.id) %>
+    <%= link_to "削除", post_path(@post.id), method: :delete %>
+  <% end %>
 </div>
