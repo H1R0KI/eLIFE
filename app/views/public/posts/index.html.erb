@@ -11,8 +11,8 @@
   <% @posts.each do |post| %>
   <tr>
     <td>
-      <%= image_tag post.member.get_profile_image, size: "50x50" %></br>
-      <%= post.member.name %>
+      <%= image_tag post.member.get_profile_image, size:"50x50"  %></br>
+      <%= link_to post.member.name, member_path(post.member_id) %>
     </td>
     <td><%= link_to post.title, post_path(post.id) %></td>
     <td><%= post.body %></td>
