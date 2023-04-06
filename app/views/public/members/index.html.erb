@@ -4,13 +4,11 @@
     <table class="table table-hover">
     <% @members.each do |member| %>
       <tr>
-        <th></th>
-        <td><%= image_tag member.get_profile_image, size:"100x100" %></td>
-      </tr>
-
-      <tr>
-        <th>ハンドルネーム</th>
-        <td><%= link_to member.name, member_path(member.id) %></td>
+        <td>
+        <%= image_tag member.get_profile_image, size:"70x70" %>
+        <%= link_to member.name, member_path(member.id) %>
+        <%= member.introduction %>
+        </td>
       </tr>
     <% end %>
     </table>

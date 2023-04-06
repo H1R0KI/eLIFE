@@ -6,6 +6,7 @@
     <th>タイトル</th>
     <th>説明</th>
     <th>画像</th>
+    <th></th>
   </tr>
 
   <% @posts.each do |post| %>
@@ -17,6 +18,9 @@
     <td><%= link_to post.title, post_path(post.id) %></td>
     <td><%= post.body %></td>
     <td><%= image_tag post.get_image, size: "50x50" %></td>
+    <% if post.member == current_member %>
+    <td><%= link_to "削除", post_path(post.id), method: :delete %></td>
+    <% end %>
   </tr>
   <% end %>
 </table>

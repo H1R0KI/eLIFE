@@ -25,12 +25,26 @@ class Public::PostsController < ApplicationController
   end
 
   def edit
+    @post = Post.find(params[:id])
+    unless @post.member.id == current_member.id
+      redirect_to post_path(@post.id)
+    end
   end
 
   def update
+    @post = Post.find(params[:id])
+    if @post.update(post_params)
+      flash[:notice] = "投稿を更新しました"
+      redirect_to post_path(@post.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @post = Post.find(params[:id])
+    @post.destroy
+    redirect_to posts_path
   end
 
   private
