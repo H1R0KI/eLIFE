@@ -18,7 +18,11 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about'
 
     #members
-    resources :members,only: [:index, :edit, :show, :update]
+    resources :members,only: [:index, :edit, :show, :update] do
+      resource :follows, only: [:create, :destroy]
+      get 'followings' => 'follows#followings', as: 'followings'
+      get 'followers' => 'follows#followers', as: 'followers'
+    end
 
     devise_scope :member do
       post 'members/guest_sign_in', to: 'members/sessions#guest_sign_in'
