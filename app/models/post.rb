@@ -14,4 +14,9 @@ class Post < ApplicationRecord
     image
   end
 
+  #同じユーザーが同じ投稿に複数いいねできないようにする
+  def favorited_by?(member)
+    favorites.exists?(member_id: member.id)
+  end
+
 end
