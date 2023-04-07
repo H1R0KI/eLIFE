@@ -5,6 +5,13 @@ Rails.application.routes.draw do
     sessions: "admin/sessions"
   }
 
+  namespace :admin do
+
+    #members
+    resources :members,only: [:index,:edit,:show,:update]
+  end
+  
+  
   #会員側
   devise_for :members, skip: [:passwords], controllers: {
     registrations: "public/registrations",

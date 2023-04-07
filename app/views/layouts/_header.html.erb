@@ -19,6 +19,13 @@
           <li>
             <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class:"btn btn-outline-success text-light" %>
           </li>
+        <% elsif admin_signed_in? %>
+          <li>
+            <%= link_to "登録会員一覧", admin_members_path, class:"btn btn-outline-success text-light" %>
+          </li>
+          <li>
+            <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-outline-success text-light" %>
+          </li>
         <% else %>
           <li>
             <%= link_to "サイト概要", about_path, class:"btn btn-outline-success text-light" %>
@@ -28,6 +35,9 @@
           </li>
           <li>
             <%= link_to "ログイン", member_session_path, class:"btn btn-outline-success text-light" %>
+          </li>
+          <li>
+            <%= link_to "管理者ログイン", admin_session_path, class:"btn btn-outline-success text-light" %>
           </li>
         <% end %>
       </ul>
