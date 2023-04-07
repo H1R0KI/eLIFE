@@ -8,6 +8,7 @@
         <%= image_tag member.get_profile_image, size:"70x70" %>
         <%= link_to member.name, member_path(member.id) %>
         <%= member.introduction %>
+        <%= render 'public/follows/follow', member: member %>
         </td>
       </tr>
     <% end %>
