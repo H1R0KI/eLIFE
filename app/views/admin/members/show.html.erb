@@ -8,12 +8,10 @@
         <td><%= @member.name %></td>
       </tr>
 
-      <% if @member.id == current_member.id %>
       <tr>
         <th>メールアドレス</th>
         <td><%= @member.email %></td>
       </tr>
-      <% end %>
 
       <tr>
         <th>年代</th>
@@ -38,11 +36,9 @@
         <% end %>
       </tr>
     </table>
-    <% if @member.id == current_member.id %>
-      <%= link_to edit_member_path(current_member.id), class: 'text-light' do %>
-          <button class="btn btn-success" type="submit">編集する</button>
+       <%= link_to edit_admin_member_path(@member.id), class: 'text-light' do %>
+        <button class="btn btn-success" type="submit">編集する</button>
       <% end %>
-    <% end %>
     </div>
   </div>
 </div>
