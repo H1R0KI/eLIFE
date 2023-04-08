@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg bg-success">
+<nav class="navbar navbar-expand-lg", style="background-color: #BFDCAE;">
   <div class="collapse navbar-collapse">
     <%= link_to "top", root_path %>
     <div class="d-flex flex-column ml-auto">
       <ul class="navbar-nav">
         <% if member_signed_in? %>
           <li>
-            <%= link_to "投稿一覧", posts_path, class:"btn btn-outline-success text-light" %>
+            <%= link_to "投稿一覧", posts_path, class:"btn btn-success text-light" %>
           </li>
           <li>
             <%= link_to "新規投稿", new_post_path, class:"btn btn-outline-success text-light" %>
@@ -28,17 +28,26 @@
           </li>
         <% else %>
           <li>
-            <%= link_to "サイト概要", about_path, class:"btn btn-outline-success text-light" %>
+            <%= link_to "HOME", root_path, class:"btn btn-success mr-3" %>
           </li>
           <li>
-            <%= link_to "新規登録", new_member_registration_path, class:"btn btn-outline-success text-light" %>
+            <%= link_to "サイト概要", about_path, class:"btn btn-success mr-3" %>
           </li>
+
+          <div class="dropdown">
+            <button class="btn btn-success  mr-3 dropdown-toggle" data-toggle="dropdown">
+              ログイン
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdown1">
+              <li><%= link_to "ログイン", member_session_path, class:"text-danger text-decoration-none" %></li>
+              <li><%= link_to "新規登録", new_member_registration_path %></li>
+            </div>
+          </div>
+
           <li>
-            <%= link_to "ログイン", member_session_path, class:"btn btn-outline-success text-light" %>
+            <%= link_to '投稿を見に行く→', members_guest_sign_in_path, class: "btn btn-success  mr-3", method: :post %>
           </li>
-          <li>
-            <%= link_to "管理者ログイン", admin_session_path, class:"btn btn-outline-success text-light" %>
-          </li>
+
         <% end %>
       </ul>
     </div>

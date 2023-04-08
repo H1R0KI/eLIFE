@@ -1,32 +1,31 @@
 <p><%= flash[:notice] %></p>
 
-<div class="h2">タグ一覧</div>
-<% @tags.each do |tag| %>
-  <%= link_to tag.name, tag_posts_path(tag.id) %><%= tag.posts.count %>
-<% end %>
-<div class="h2">投稿一覧</div>
-<table class="table table-hover">
-  <tr>
-    <th></th>
-    <th>タイトル</th>
-    <th>説明</th>
-    <th>画像</th>
-    <th></th>
-  </tr>
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-3">
+      <div class="input-group mt-5">
+        <input type="text" class="form-control" placeholder="キーワードを入力">
+        <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fas fa-search"></i> 検索</button>
+      </div>
+      <%= render 'tag_list', tag: @tag %>
+    </div>
 
-  <% @posts.each do |post| %>
-  <tr>
-    <td>
-      <%= image_tag post.member.get_profile_image, size:"50x50"  %></br>
-      <%= link_to post.member.name, member_path(post.member_id) %>
-    </td>
-    <td><%= link_to post.title, post_path(post.id) %></td>
-    <td><%= post.body %></td>
-    <td><%= image_tag post.get_image, size: "50x50" %></td>
-    <td><%= render 'public/favorites/favorite', post: post %></td>
-    <% if post.member == current_member %>
-    <td><%= link_to "削除", post_path(post.id), method: :delete %></td>
-    <% end %>
-  </tr>
-  <% end %>
-</table>
+    <div class="col-9">
+      <div class="h2 text-center">全ての投稿 <%= @posts.count %>件</div>
+      <table class="table table-hover">
+        <% @posts.each do |post| %>
+        <tr>
+          <td class="text-center">
+            <%= image_tag post.member.get_profile_image, class: "text-center", size:"50x50" %></br>
+            <%= link_to post.member.name, member_path(post.member_id) %>
+          </td>
+          <td>
+            <%= link_to post.title, post_path(post.id) %>
+          </td>
+          <td><%= render 'public/favorites/favorite', post: post %></td>
+          <% if post.member == current_member %>
+          <td><%= link_to "削除", post_path(post.id), method: :delete %></td>
+          <% end %>
+        </tr>
+        <% end %>
+      </table>
