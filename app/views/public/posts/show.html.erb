@@ -7,6 +7,10 @@
     <div class="col-6">
       <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></br>
       <%= @post.title %>
+
+      <% @post_tags.each do |tag| %>
+        <%= link_to tag.name, tag_posts_path(tag_id: tag.id) %>
+      <% end %>
     </div>
     <div class="w-100">
     </div>

@@ -1,4 +1,9 @@
 <p><%= flash[:notice] %></p>
+
+<div class="h2">タグ一覧</div>
+<% @tags.each do |tag| %>
+  <%= link_to tag.name, tag_posts_path(tag.id) %><%= tag.posts.count %>
+<% end %>
 <div class="h2">投稿一覧</div>
 <table class="table table-hover">
   <tr>

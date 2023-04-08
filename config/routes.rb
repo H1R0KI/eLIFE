@@ -10,8 +10,8 @@ Rails.application.routes.draw do
     #members
     resources :members,only: [:index,:edit,:show,:update]
   end
-  
-  
+
+
   #会員側
   devise_for :members, skip: [:passwords], controllers: {
     registrations: "public/registrations",
@@ -39,6 +39,11 @@ Rails.application.routes.draw do
     resources :posts,only: [:new, :edit, :index, :show, :create, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
+    end
+
+    #tags
+    resources :tags do
+      get 'posts', to: 'posts#search'
     end
   end
 
