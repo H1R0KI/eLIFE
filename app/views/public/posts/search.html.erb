@@ -1,0 +1,7 @@
+<div class="h2">タグ一覧</div>
+<% @tags.each do |tag| %>
+  <%= link_to tag.name, tag_posts_path(tag.id) %><%= tag.posts.count %>
+<% end %>
+<% @posts.each do |post| %>
+  <%= link_to post.title, post_path(post.id) %>
+<% end %>

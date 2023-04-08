@@ -7,7 +7,9 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.member_id = current_member.id
+    tag_list = params[:post][:tag_name].split(nil)
     if @post.save
+      @post.save_tag(tag_list)
       redirect_to post_path(@post)
     else
       @posts = Post.all
@@ -17,11 +19,14 @@ class Public::PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @tags = Tag.all
   end
 
   def show
     @post = Post.find(params[:id])
+    @post_tags = @post.tags
     @post_comment = PostComment.new
+
   end
 
   def edit
@@ -45,6 +50,12 @@ class Public::PostsController < ApplicationController
     @post = Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
+  end
+
+  def search
+      @tags = Tag.all  #こっちの投稿一覧表示ページでも全てのタグを表示するために、タグを全取得
+      @tag = Tag.find(params[:tag_id])  #クリックしたタグを取得
+      @posts = @tag.posts.all           #クリックしたタグに紐付けられた投稿を全て表示
   end
 
   private
