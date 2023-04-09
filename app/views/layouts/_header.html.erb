@@ -4,21 +4,35 @@
     <div class="d-flex flex-column ml-auto">
       <ul class="navbar-nav">
         <% if member_signed_in? %>
-          <li>
-            <%= link_to "投稿一覧", posts_path, class:"btn btn-success text-light" %>
-          </li>
-          <li>
-            <%= link_to "新規投稿", new_post_path, class:"btn btn-outline-success text-light" %>
-          </li>
-          <li>
-            <%= link_to "会員一覧", members_path, class:"btn btn-outline-success text-light" %>
-          </li>
-          <li>
-            <%= link_to "マイページ", member_path(current_member.id), class:"btn btn-outline-success text-light" %>
-          </li>
-          <li>
-            <%= link_to "ログアウト", destroy_member_session_path, method: :delete, class:"btn btn-outline-success text-light" %>
-          </li>
+          <div class="dropdown">
+            <button class="btn btn-success  mr-3 dropdown-toggle" data-toggle="dropdown">
+              投稿
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdown1">
+              <ul>
+                <li><%= link_to "投稿一覧", posts_path %></li>
+                <li><%= link_to "新規投稿", new_post_path %></li>
+              </ul>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="btn btn-success  mr-3 dropdown-toggle" data-toggle="dropdown">
+              ユーザー
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdown1">
+              <li><%= link_to "会員一覧", members_path %></li>
+            </div>
+          </div>
+          <div class="dropdown">
+            <button class="btn btn-success mr-3 dropdown-toggle" data-toggle="dropdown">
+              <%= image_tag current_member.get_profile_image, size:"20x20" %>
+              <%= current_member.name %>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdown1">
+              <li><%= link_to "マイページ", member_path(current_member.id) %></li>
+              <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
+            </div>
+          </div>
         <% elsif admin_signed_in? %>
           <li>
             <%= link_to "登録会員一覧", admin_members_path, class:"btn btn-outline-success text-light" %>

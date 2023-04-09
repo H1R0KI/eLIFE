@@ -5,27 +5,32 @@
     <div class="col-3">
       <div class="input-group mt-5">
         <input type="text" class="form-control" placeholder="キーワードを入力">
-        <button class="btn btn-outline-success" type="button" id="button-addon2"><i class="fas fa-search"></i> 検索</button>
+        <button class="btn btn-success" type="button" id="button-addon2"><i class="fas fa-search"></i> 検索</button>
       </div>
       <%= render 'tag_list', tag: @tag %>
     </div>
 
     <div class="col-9">
-      <div class="h2 text-center">全ての投稿 <%= @posts.count %>件</div>
-      <table class="table table-hover">
-        <% @posts.each do |post| %>
-        <tr>
-          <td class="text-center">
-            <%= image_tag post.member.get_profile_image, class: "text-center", size:"50x50" %></br>
-            <%= link_to post.member.name, member_path(post.member_id) %>
-          </td>
-          <td>
-            <%= link_to post.title, post_path(post.id) %>
-          </td>
-          <td><%= render 'public/favorites/favorite', post: post %></td>
-          <% if post.member == current_member %>
-          <td><%= link_to "削除", post_path(post.id), method: :delete %></td>
-          <% end %>
-        </tr>
-        <% end %>
-      </table>
+      <div class="h2 text-center">みんなの投稿 全<%= @posts.count %>件</div>
+      <% @posts.each do |post| %>
+      <div class="card-deck mb-1">
+        <div class="card">
+          <div class="card-body">
+            <h5><%= link_to post.title, post_path(post.id) %></h5>
+            <p class="card-text"><%= post.body.truncate(50) %></p>
+            <p class="card-text small">
+              <%= image_tag post.member.get_profile_image, size:"20x20" %>
+              <%= link_to post.member.name, member_path(post.member_id) %>
+              <small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></small>
+              　<%= render 'public/favorites/favorite', post: post %>
+              <% if post.member == current_member %>
+              　<%= link_to "この投稿を削除", post_path(post.id), class: "text-danger", method: :delete %>
+              <% end %>
+            </p>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
