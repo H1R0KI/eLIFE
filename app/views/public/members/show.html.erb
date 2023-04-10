@@ -27,11 +27,11 @@
         <table class="table">
           <tr>
             <th style="width: 20%">フォロー数</th>
-            <td><%= @member.followings.count %></td>
+            <td><%= link_to @member.followings.count, member_followings_path(@member) %></td>
           </tr>
           <tr>
             <th>フォロワー数</th>
-            <td><%= @member.followers.count %></td>
+            <td><%= link_to @member.followers.count, member_followers_path(@member) %></td>
           </tr>
           <tr>
             <th>年代</th>
