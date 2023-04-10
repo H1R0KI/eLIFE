@@ -33,6 +33,19 @@ class Post < ApplicationRecord
     end
   end
 
+  #検索方法分岐
+  def self.search_for(content, method)
+    if method == "perfect"
+      Post.where(title: content)
+    elsif method == "forward"
+      Post.where("title LIKE ?", content + "%")
+    elsif method == "backward"
+      Post.where("title LiKE ?", "%" + content)
+    else
+      Post.where("title LIKE ?", "%" + content + "%")
+    end
+  end
+
   #同じユーザーが同じ投稿に複数いいねできないようにする
   def favorited_by?(member)
     favorites.exists?(member_id: member.id)

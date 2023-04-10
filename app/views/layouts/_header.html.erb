@@ -1,6 +1,7 @@
 <nav class="navbar navbar-expand-lg", style="background-color: #BFDCAE;">
   <div class="collapse navbar-collapse">
     <%= link_to "top", root_path %>
+    <%= render 'layouts/search' %>
     <div class="d-flex flex-column ml-auto">
       <ul class="navbar-nav">
         <% if member_signed_in? %>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
 
-    #members
+    #メンバー
     resources :members,only: [:index,:edit,:show,:update]
   end
 
@@ -20,11 +20,11 @@ Rails.application.routes.draw do
 
   scope module: :public do
 
-    #homes
+    #ホーム
     root to: 'homes#top'
     get '/about' => 'homes#about'
 
-    #members
+    #メンバー
     resources :members,only: [:index, :edit, :show, :update] do
       resource :follows, only: [:create, :destroy]
       get 'followings' => 'follows#followings', as: 'followings'
@@ -35,16 +35,20 @@ Rails.application.routes.draw do
       post 'members/guest_sign_in', to: 'members/sessions#guest_sign_in'
     end
 
-    #posts
+    #投稿
     resources :posts,only: [:new, :edit, :index, :show, :create, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
 
-    #tags
+    #タグ
     resources :tags do
       get 'posts', to: 'posts#search'
     end
+
+    #検索
+    get "search" => "searches#search"
+
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

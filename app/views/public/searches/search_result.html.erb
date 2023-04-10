@@ -1,0 +1,19 @@
+<p><%= flash[:notice] %></p>
+
+<div class="container px-5 px-sm-0">
+  <div class="row">
+    <div class="col-3">
+      <%= render 'public/posts/tag_list', tag: @tag %>
+    </div>
+
+    <div class="col-9">
+      <% if @model == 'post' %>
+        <div class="h2 text-center">"<%= @content %>" の検索結果 全<%= @posts.count %>件</div>
+        <%= render 'public/posts/post_list', post: @posts %>
+
+      <% elsif @model == 'member' %>
+
+      <% end %>
+    </div>
+  </div>
+</div>

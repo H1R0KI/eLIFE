@@ -28,6 +28,7 @@ class Member < ApplicationRecord
     profile_image
   end
 
+  # ゲストログイン登録情報
   def self.guest
     find_or_create_by!(name: 'guestmember' ,email: 'guest@example.com') do |member|
       member.password = SecureRandom.urlsafe_base64
@@ -35,6 +36,20 @@ class Member < ApplicationRecord
     end
   end
 
+  #検索方法分岐
+  def self.search_for(content, method)
+    if method == "perfect"
+      Member.where(name: content)
+    elsif method == "forward"
+      Member.where("name LIKE ?", content + "%")
+    elsif method == "backward"
+      Member.where("name LiKE ?", "%" + content)
+    else
+      User.where("name LIKE ?", "%" + content + "%")
+    end
+  end
+
+  #フォロー機能
   def follow(member_id)
     follows.create(following_id: member_id)
   end
