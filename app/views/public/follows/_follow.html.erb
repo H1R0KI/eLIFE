@@ -1,5 +1,5 @@
 <% if current_member.following?(member) %>
-  <%= link_to "フォロー外す", member_follows_path(member.id), method: :delete %>
+  <%= link_to "フォロー中", member_follows_path(member.id), method: :delete, class: "font-weight-bold btn btn-sm btn-outline-dark rounded-pill"  %>
 <% else %>
-  <%= link_to "フォローする", member_follows_path(member.id), method: :post %>
+  <%= link_to "フォローする", member_follows_path(member.id), method: :post, class: "font-weight-bold btn btn-sm btn-dark rounded-pill"  %>
 <% end %>

@@ -2,7 +2,7 @@
     enums:
       member:
         age:
-          teens: "〜10代"
+          teens: "10代"
           twenties: "20代"
           thirties: "30代"
           forties: "40代"

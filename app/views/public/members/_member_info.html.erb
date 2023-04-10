@@ -4,33 +4,33 @@
     <p class="text-center"><%= link_to @post.member.name, member_path(@post.member_id) %></p>
     <p class="text-center">
       <% if @post.member_id == current_member.id %>
-        <%= link_to edit_member_path(@post.member.id), class: "btn btn-secondary" do %>
+        <%= link_to edit_member_path(@post.member.id), class: "btn btn-secondary rounded-pill" do %>
           <i class="fas fa-user-cog"></i> 編集する
         <% end %>
       <% else %>
         <% if current_member.following?(@post.member) %>
-          <%= link_to "フォローを外す", member_follows_path(@post.member.id), method: :delete, class: "btn btn-danger" %>
+          <%= link_to "フォローを外す", member_follows_path(@post.member.id), method: :delete, class: "btn btn-danger rounded-pill" %>
         <% else %>
-          <%= link_to "フォローする", member_follows_path(@post.member.id), method: :post, class: "btn btn-success" %>
+          <%= link_to "フォローする", member_follows_path(@post.member.id), method: :post, class: "btn btn-success rounded-pill" %>
         <% end %>
       <% end %>
     </p>
     <table class="table">
       <tr>
         <th>フォロー数</th>
-        <th><%= @post.member.followings.count %></th>
+        <td><%= @post.member.followings.count %></td>
       </tr>
       <tr>
         <th>フォロワー数</th>
-        <th><%= @post.member.followers.count %></th>
+        <td><%= @post.member.followers.count %></td>
       </tr>
       <tr>
         <th>年代</th>
-        <th><%= @post.member.age_i18n %></th>
+        <td><%= @post.member.age_i18n %></td>
       </tr>
       <tr>
         <th>世帯構成</th>
-        <th><%= @post.member.composition_i18n %></th>
+        <td><%= @post.member.composition_i18n %></td>
       </tr>
 
     </table>

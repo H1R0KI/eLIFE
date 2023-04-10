@@ -8,7 +8,7 @@ class Public::MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
- #   @posts = @member.posts
+    @posts = @member.posts
   end
 
   def edit
@@ -33,10 +33,10 @@ class Public::MembersController < ApplicationController
     params.require(:member).permit(:name, :profile_image, :age, :composition, :introduction)
   end
 
-#  def ensure_guest_user
-#    @user = User.find(params[:id])
-#    if @user.name == "guestuser"
-#      redirect_to user_path(current_user), notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+#  def ensure_guest_member
+#    @member = Member.find(params[:id])
+#    if @member.name == "guestmember"
+#      redirect_to member_path(current_member), notice: "ゲストはプロフィール編集画面へ遷移できません。"
 #    end
 #  end
 

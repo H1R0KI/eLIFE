@@ -45,7 +45,7 @@ class Member < ApplicationRecord
     elsif method == "backward"
       Member.where("name LiKE ?", "%" + content)
     else
-      User.where("name LIKE ?", "%" + content + "%")
+      Member.where("name LIKE ?", "%" + content + "%")
     end
   end
 
