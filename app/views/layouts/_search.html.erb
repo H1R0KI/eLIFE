@@ -1,10 +1,10 @@
 <% if member_signed_in? %>
   <div class="search_form">
     <%= form_with url: search_path, method: :get, local: true do |f| %>
-      <%= f.text_field :content %>
+      <%= f.text_field :content, placeholder: "キーワードを入力", class: "rounded" %>
       <%= f.select :model, options_for_select({ "投稿" => "post", "ユーザー" => "member"}) %>
-      <%= f.select :method, options_for_select({ "完全一致" => "perfect", "前方一致" => "forward", "後方一致" => "backward", "部分一致" => "partial"}) %>
-      <%= f.submit "検索", class: "btn btn-sm btn-primary" %>
+      <%= f.select :method, options_for_select({ "部分一致" => "partial", "前方一致" => "forward", "後方一致" => "backward", "完全一致" => "perfect"}) %>
+      <%= f.submit "検索", class: "btn btn-sm btn-outline-light font-weight-bold" %>
     <% end %>
   </div>
 <% end %>

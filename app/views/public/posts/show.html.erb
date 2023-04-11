@@ -6,10 +6,10 @@
 
     <div class="col-1"></div>
 
-    <div class="col-8 mt-5">
+    <div class="col-8 mt-5", id="post_<%= @post.id %>">
       <p class="h1"><%= @post.title %></p>
       <span>
-        タグ：
+        <i class="fas fa-tag"></i>
         <% @post_tags.each do |tag| %>
           <%= link_to tag.name, tag_posts_path(tag_id: tag.id) %>
         <% end %>
@@ -27,7 +27,9 @@
             <%= link_to "削除", post_path(@post.id), method: :delete, class: "btn btn-sm btn-danger" %>
           </div>
         <% else %>
-          <%= render 'public/favorites/favorite', post: @post %>
+          <div class="favorite_btn">
+            <%= render 'public/favorites/favorite_btn', post: @post %>
+          </div>
         <% end %>
       <div class="pt-5 border-bottom">
         コメント(<%= @post.post_comments.count %>)
