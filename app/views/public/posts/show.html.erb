@@ -21,37 +21,18 @@
       <div class="mb-3">
         <%= image_tag @post.get_image %>
       </div>
-        <% if @post.member == current_member %>
-          <div class="text-right">
-            <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-sm btn-success" %>
-            <%= link_to "削除", post_path(@post.id), method: :delete, class: "btn btn-sm btn-danger" %>
-          </div>
-        <% else %>
-          <div class="favorite_btn">
-            <%= render 'public/favorites/favorite_btn', post: @post %>
-          </div>
-        <% end %>
-      <div class="pt-5 border-bottom">
-        コメント(<%= @post.post_comments.count %>)
-      </div>
-      <% @post.post_comments.each do |post_comment| %>
-        <div class="border-bottom py-3">
-          <div><%= post_comment.comment %></div>
-          <div class="small">
-            <%= image_tag post_comment.member.get_profile_image, class: "rounded-circle", size:"15x15"%>
-            <%= link_to post_comment.member.name, member_path(post_comment.member_id) %>
-          　<%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
-            <% if post_comment.member == current_member %>
-            　<%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete %>
-            <% end %>
-          </div>
+      <% if @post.member == current_member %>
+        <div class="text-right">
+          <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-sm btn-success" %>
+          <%= link_to "削除", post_path(@post.id), method: :delete, class: "btn btn-sm btn-danger" %>
+        </div>
+      <% else %>
+        <div class="favorite_btn">
+          <%= render 'public/favorites/favorite_btn', post: @post %>
         </div>
       <% end %>
-      <div class="pt-2">
-        <%= form_with model: [@post, @post_comment] do |f| %>
-          <p><%= f.text_area :comment, rows: '2', placeholdaer: "ここにコメントを入力" %></p>
-          <p><%= f.submit "コメントする" %></p>
-        <% end %>
+      <div class="comment_area">
+        <%= render 'public/post_comments/comment_area', post: @post %>
       </div>
     </div>
   </div>
