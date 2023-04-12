@@ -41,5 +41,6 @@ https://docs.google.com/spreadsheets/d/1VfGacB8YgY1n2w1krmQK4nCr-_JHJxKLAw7_YX8b
 - IDE：Cloud9
 
 ## 使用素材
-- ロゴ作成 (https://www.designevo.com/jp/)
+- ロゴ作成 DesignEvo様(https://www.designevo.com/jp/)
+- サイト内素材 いらすとや様(https://www.irasutoya.com/)
 - 楽天APIにて商品情報を取得予定
