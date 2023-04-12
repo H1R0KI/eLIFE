@@ -1,21 +1,16 @@
 <div class="container">
   <div class="row">
-    <div class="col-3">
-      <%= render 'public/members/member_side', tag: @tag %>
-    </div>
 
-    <div class="col-1"></div>
-
-    <div class="col-8 mt-5", id="post_<%= @post.id %>">
-      <p class="h1"><%= @post.title %></p>
+    <div class="col-7 mt-5", id="post_<%= @post.id %>">
+      <p class="h2 font-weight-bold"><%= @post.title %></p>
       <span>
         <i class="fas fa-tag"></i>
         <% @post_tags.each do |tag| %>
           <%= link_to tag.name, tag_posts_path(tag_id: tag.id) %>
         <% end %>
       </span></br>
-      <small class="text-muted"><%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></small></br>
-      <div class="pt-5 pb-3">
+      <small class="text-muted">投稿日&nbsp;<%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></small></br>
+      <div class="mt-2 pt-5 pb-3 border-top">
         <%= @post.body %>
       </div>
       <div class="mb-3">
@@ -34,5 +29,11 @@
       <div class="comment_area">
         <%= render 'public/post_comments/comment_area', post: @post %>
       </div>
+    </div>
+
+    <div class="col-1"></div>
+
+    <div class="col-4 border-left border-right">
+      <%= render 'member_side', tag: @tag %>
     </div>
   </div>

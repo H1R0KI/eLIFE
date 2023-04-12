@@ -25,7 +25,11 @@ Rails.application.routes.draw do
     get '/about' => 'homes#about'
 
     #メンバー
-    resources :members,only: [:index, :edit, :show, :update] do
+    resources :members, only: [:index, :edit, :show, :update] do
+      member do
+        get :favorites
+        get :posts
+      end
       resource :follows, only: [:create, :destroy]
       get 'followings' => 'follows#followings', as: 'followings'
       get 'followers' => 'follows#followers', as: 'followers'
@@ -36,7 +40,7 @@ Rails.application.routes.draw do
     end
 
     #投稿
-    resources :posts,only: [:new, :edit, :index, :show, :create, :update, :destroy] do
+    resources :posts, only: [:new, :edit, :index, :show, :create, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end

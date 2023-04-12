@@ -1,6 +1,7 @@
 class Public::MembersController < ApplicationController
 
   before_action :authenticate_member!
+  before_action :set_member, only: [:favorites]
 
   def index
     @members = Member.all
@@ -28,11 +29,24 @@ class Public::MembersController < ApplicationController
     end
   end
 
+  def posts
+    @member = Member.find(params[:id])
+    @posts = @member.posts
+  end
+
+  def favorites
+    favorites = Favorite.where(member_id: @member.id).pluck(:post_id)
+    @favorite_posts = Post.find(favorites)
+  end
+
   private
   def member_params
     params.require(:member).permit(:name, :profile_image, :age, :composition, :introduction)
   end
 
+  def set_member
+    @member = Member.find(params[:id])
+  end
 #  def ensure_guest_member
 #    @member = Member.find(params[:id])
 #    if @member.name == "guestmember"
