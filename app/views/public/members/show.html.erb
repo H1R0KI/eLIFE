@@ -1,7 +1,7 @@
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-7">
-      <div class="pt-5">
+      <div class="pt-5", id="member_<%= @member.id %>">
         <h2 class="text-center font-weight-bold">
           <% if @member == current_member %>
         　マイプロフィール
@@ -11,17 +11,13 @@
         </h5>
         <div class="text-center py-3"><%= image_tag @member.get_profile_image, class: "rounded-circle", size:"100x100"%></div>
         <p class="text-center h4 font-weight-bold"><%= @member.name %></p>
-        <p class="text-center">
-          <% if @member == current_member %>
+        <p class="text-center follow_btn">
+          <% if @member.id == current_member.id %>
             <%= link_to edit_member_path(@member.id), class: "btn btn-secondary rounded-pill" do %>
               <i class="fas fa-user-cog"></i> 編集する
             <% end %>
           <% else %>
-            <% if current_member.following?(@member) %>
-              <%= link_to "フォローを外す", member_follows_path(@member.id), method: :delete, class: "btn btn-outline-dark rounded-pill" %>
-            <% else %>
-              <%= link_to "フォローする", member_follows_path(@member.id), method: :post, class: "btn btn-dark rounded-pill" %>
-            <% end %>
+            <%= render 'public/follows/follow_btn', member: @member %>
           <% end %>
         </p>
         <table class="table">
