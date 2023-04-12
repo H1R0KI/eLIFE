@@ -1,13 +1,13 @@
 class Public::FollowsController < ApplicationController
   # フォローするとき
   def create
+    @member = Member.find(params[:member_id])
     current_member.follow(params[:member_id])
-    redirect_to request.referer
   end
   # フォロー外すとき
   def destroy
+    @member = Member.find(params[:member_id])
     current_member.unfollow(params[:member_id])
-    redirect_to request.referer
   end
   # フォロー一覧
   def followings

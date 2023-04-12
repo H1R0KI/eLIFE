@@ -50,16 +50,16 @@ class Member < ApplicationRecord
   end
 
   #フォロー機能
+  def following?(member)
+    followings.include?(member)
+  end
+
   def follow(member_id)
     follows.create(following_id: member_id)
   end
 
   def unfollow(member_id)
     follows.find_by(following_id: member_id).destroy
-  end
-
-  def following?(member)
-    followings.include?(member)
   end
 
   enum age: { teens: 0, twenties: 1, thirties: 2, forties: 3, fifties: 4, sixties: 5}
