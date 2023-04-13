@@ -6,7 +6,11 @@
     <div><%= post_comment.comment %></div>
     <div class="small">
       <%= image_tag post_comment.member.get_profile_image, class: "rounded-circle", size:"15x15"%>
-      <%= link_to post_comment.member.name, member_path(post_comment.member_id) %>
+      <% if post_comment.member == @post.member %>
+        <%= link_to post_comment.member.name, member_path(post_comment.member_id) %>(投稿者)
+      <% else %>
+        <%= link_to post_comment.member.name, member_path(post_comment.member_id) %>
+      <% end %>
       <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
       <% if post_comment.member == current_member %>
         <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true %>

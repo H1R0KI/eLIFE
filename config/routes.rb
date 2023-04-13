@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  #管理者側
+  #管理者側のルーティング
   devise_for :admin,  skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   end
 
 
-  #会員側
+  #会員側のルーティング
   devise_for :members, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: 'public/sessions'
@@ -24,8 +24,10 @@ Rails.application.routes.draw do
     root to: 'homes#top'
     get '/about' => 'homes#about'
 
-    #メンバー
+    #メンバー関連
     resources :members, only: [:index, :edit, :show, :update] do
+      get 'quitcheck' => 'members#quit_check'
+      patch 'quit' => 'members#quit'
       member do
         get :favorites
         get :posts
@@ -39,18 +41,18 @@ Rails.application.routes.draw do
       post 'members/guest_sign_in', to: 'members/sessions#guest_sign_in'
     end
 
-    #投稿
+    #投稿関連
     resources :posts, only: [:new, :edit, :index, :show, :create, :update, :destroy] do
       resource :favorites, only: [:create, :destroy]
       resources :post_comments, only: [:create, :destroy]
     end
 
-    #タグ
+    #タグ検索
     resources :tags do
       get 'posts', to: 'posts#search'
     end
 
-    #検索
+    #キーワード検索
     get "search" => "searches#search"
 
   end

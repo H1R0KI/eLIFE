@@ -10,6 +10,7 @@ class Public::PostsController < ApplicationController
     tag_list = params[:post][:tag_name].split(nil)
     if @post.save
       @post.save_tag(tag_list)
+      flash[:notice] = "投稿しました"
       redirect_to post_path(@post)
     else
       @posts = Post.all
@@ -32,6 +33,7 @@ class Public::PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
+    @post_tags = @post.tags
     unless @post.member.id == current_member.id
       redirect_to post_path(@post.id)
     end
@@ -39,7 +41,13 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    tag_list = params[:post][:tag_name].split(nil)
     if @post.update(post_params)
+      @old_tags = PostTag.where(post_id: @post.id)
+      @old_tags.each do |tag|
+        tag.delete
+      end
+      @post.save_tag(tag_list)
       flash[:notice] = "投稿を更新しました"
       redirect_to post_path(@post.id)
     else
@@ -50,6 +58,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
+    flash[:notice] = "投稿を削除しました"
     redirect_to posts_path
   end
 

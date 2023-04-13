@@ -1,44 +1,55 @@
-<h2>新規登録</h2>
+<div class="container">
+  <div class="row py-3">
+    <div class="col-3"></div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+    <div class="col-6">
+      <div class="border-bottom">
+        <h4 class="font-weight-bold">新規ユーザー登録</h4>
+      </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render "public/shared/error_messages", resource: resource %>
+        <table class="table table-borderless">
+          <tr>
+            <td style="width: 60%">ハンドルネーム</td>
+            <td><%= f.text_field :name, autofocus: true, placeholder: "2〜20文字以内" %></td>
+          </tr>
 
-  <div class="field">
-    <%= f.label :ハンドルネーム %><br />
-    <%= f.text_field :name, autofocus: true %>
+          <tr>
+            <td>年代</td>
+            <td><%= f.select :age, Member.ages.keys.map {|k| [I18n.t("enums.member.age.#{k}"), k]}  %></td>
+          </tr>
+
+          <tr>
+            <td>世代構成</td>
+            <td><%= f.select :composition, Member.compositions.keys.map {|k| [I18n.t("enums.member.composition.#{k}"), k]}  %></td>
+          </tr>
+
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= f.email_field :email, autocomplete: "email", placeholder: "example@example.com" %></td>
+          </tr>
+
+          <tr>
+            <td>パスワード</td>
+            <td><%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上" %></td>
+          </tr>
+
+          <tr>
+            <td>パスワード確認</td>
+            <td><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "6文字以上" %></td>
+          </tr>
+
+          <tr>
+            <td class="text-right pt-4 btn-lg"><%= f.submit "新規登録" %></td>
+          </tr>
+        </table>
+      <% end %>
+
+      <div class="text-center">
+        <span class="small">ログインは</span><%= render "public/shared/links" %>
+      </div>
+    </div>
+
+    <div class="col-3"></div>
   </div>
-
-  <div class="field">
-    <%= f.label :年代 %><br />
-    <%= f.select :age, Member.ages.keys.map {|k| [I18n.t("enums.member.age.#{k}"), k]}  %>
-  </div>
-
-  <div class="field">
-    <%= f.label :世帯構成 %><br />
-    <%= f.select :composition, Member.compositions.keys.map {|k| [I18n.t("enums.member.composition.#{k}"), k]}  %>
-  </div>
-
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> 文字以内)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :パスワード確認 %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
-
-<%= render "public/shared/links" %>
+</div>

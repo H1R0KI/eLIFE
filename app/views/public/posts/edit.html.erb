@@ -1,21 +1,37 @@
 <div class="container">
-  <div class="row">
-    <%= form_with model: @post do |f| %>
-    <div class="form-group">
-      <label for="title">タイトル</label>
-      <%= f.text_field :title, {class: "form-control"} %>
+  <div class="row py-3">
+    <div class="col-3"></div>
+
+    <div class="col-6">
+      <div class="border-bottom">
+        <h4 class="font-weight-bold">投稿情報編集</h4>
+      </div>
+      <%= form_with model: @post do |f| %>
+        <div class="form-group pt-5 pb-2">
+          <label for="title">タイトル</label>
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+        <div class="form-group pb-2">
+          <label for="post-tag">タグ（半角スペースで複数つけられます）</label>
+          <p>
+            <%= f.text_field :tag_name, class: "form-control" %>
+          </p>
+        </div>
+        <div class="form-group pb-2">
+          <label for="body">説明</label>
+          <%= f.text_area :body, rows: '4', class: "form-control" %>
+        </div>
+        <div class="form-group pb-4">
+          <label for="image">画像</label>
+          <p><%= f.file_field :image, accept: "image/*" %></p>
+        </div>
+        <div class="form-group text-center pt-2">
+          <%= f.submit "変更を保存", class: "btn btn-lg btn-secondary" %>
+        </div>
+        <div class="text-center">
+          <%= link_to "キャンセル", post_path(@post.id) %>
+        </div>
+      <% end %>
     </div>
-    <div class="form-group">
-      <label for="body">説明</label>
-      <%= f.text_area :body, {class: "form-control"} %>
-    </div>
-    <div class="form-group">
-      <label for="image">画像</label>
-      <p><%= f.file_field :image, accept: "image/*" %></p>
-    </div>
-    <div class="form-group">
-      <%= f.submit "更新する", class: "btn btn-secondary"%>
-    </div>
-    <% end %>
   </div>
 </div>

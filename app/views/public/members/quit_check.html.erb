@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12 mt-5 mb-5">
+      <div class="justify-content-center text-center">
+        <div class="mb-4">
+        <h4><strong>本当に退会しますか？</strong></h4>
+        </div>
+        <div class="mb-5">
+        <h5>
+          退会すると、ユーザー登録情報が全て削除され<br>
+          ログインができなくなります。<br>
+          退会する場合は、「退会する」をクリックしてください。
+        </h5>
+        </div>
+        <%= link_to member_path(@member.id), class: 'ml-3  text-decoration-none' do %>
+          <button class="btn btn-primary" type="submit">退会しない</button>
+        <% end %>
+        <%= link_to member_quit_path, method: :patch, class: 'ml-3  text-decoration-none' do %>
+          <button class="btn btn-danger" type="submit">退会する</button>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
