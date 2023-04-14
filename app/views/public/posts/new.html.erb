@@ -23,7 +23,7 @@
         </div>
         <div class="form-group pb-4">
           <label for="image">画像</label>
-          <p><%= f.file_field :image, accept: "image/*" %></p>
+          <p><%= f.file_field :image, multiple: true, accept: "image/*" %></p>
         </div>
         <div class="form-group text-center pt-2">
           <%= f.submit "投稿する", class: "btn btn-lg btn-secondary" %>

@@ -20,7 +20,7 @@
           </tr>
 
           <tr>
-            <td>世代構成</td>
+            <td>世帯構成</td>
             <td><%= f.select :composition, Member.compositions.keys.map {|k| [I18n.t("enums.member.composition.#{k}"), k]}  %></td>
           </tr>
 

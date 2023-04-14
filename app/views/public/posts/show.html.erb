@@ -16,7 +16,11 @@
         <%= @post.body %>
       </div>
       <div class="mb-3">
-        <%= image_tag @post.get_image %>
+        <% if @post.image.attached? %>
+          <% @post.image.each do |image| %>
+            <%= image_tag image.variant(resize:'400x400') %>
+          <% end %>
+        <% end %>
       </div>
       <% if @post.member == current_member %>
         <div class="text-right">
