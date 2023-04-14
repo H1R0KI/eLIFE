@@ -33,16 +33,16 @@ class Post < ApplicationRecord
     end
   end
 
-  #検索方法分岐
+  #検索の一致方法分岐
   def self.search_for(content, method)
     if method == "perfect"
-      Post.where(title: content)
+      Post.where(title: content) #完全一致
     elsif method == "forward"
-      Post.where("title LIKE ?", content + "%")
+      Post.where("title LIKE ?", content + "%") #前方一致
     elsif method == "backward"
-      Post.where("title LiKE ?", "%" + content)
+      Post.where("title LiKE ?", "%" + content) #後方一致
     else
-      Post.where("title LIKE ?", "%" + content + "%")
+      Post.where("title LIKE ?", "%" + content + "%") #部分一致
     end
   end
 

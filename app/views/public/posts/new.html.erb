@@ -12,9 +12,9 @@
           <%= f.text_field :title, class: "form-control" %>
         </div>
         <div class="form-group pb-2">
-          <label for="post-tag">タグ（半角スペースで複数つけられます）</label>
+          <label for="post-tag">タグ</label>
           <p>
-            <%= f.text_field :tag_name, class: "form-control" %>
+            <%= f.text_field :tag_name, placeholder: "例：サンプル,テスト,example", class: "form-control" %>
           </p>
         </div>
         <div class="form-group pb-2">

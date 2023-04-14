@@ -4,7 +4,7 @@ class Public::MembersController < ApplicationController
   before_action :set_member, only: [:favorites]
 
   def index
-    @members = Member.all
+    @members = Member.all.page(params[:page]).per(10)
   end
 
   def show

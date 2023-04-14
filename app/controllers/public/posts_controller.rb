@@ -7,7 +7,7 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.member_id = current_member.id
-    tag_list = params[:post][:tag_name].split(nil)
+    tag_list = params[:post][:tag_name].split(",")
     if @post.save
       @post.save_tag(tag_list)
       flash[:notice] = "投稿しました"
@@ -19,7 +19,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.page(params[:page]).per(5)
     @tags = Tag.all
 
   end
@@ -41,7 +41,7 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
-    tag_list = params[:post][:tag_name].split(nil)
+    tag_list = params[:post][:tag_name].split(",")
     if @post.update(post_params)
       @old_tags = PostTag.where(post_id: @post.id)
       @old_tags.each do |tag|
@@ -63,9 +63,9 @@ class Public::PostsController < ApplicationController
   end
 
   def search
-      @tags = Tag.all  #こっちの投稿一覧表示ページでも全てのタグを表示するために、タグを全取得
-      @tag = Tag.find(params[:tag_id])  #クリックしたタグを取得
-      @posts = @tag.posts.all           #クリックしたタグに紐付けられた投稿を全て表示
+      @tags = Tag.all
+      @tag = Tag.find(params[:tag_id])
+      @posts = @tag.posts.all
   end
 
   private

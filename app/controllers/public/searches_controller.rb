@@ -4,9 +4,9 @@ class Public::SearchesController < ApplicationController
 
   def search
     @tags = Tag.all
-    @model = params["model"]
-    @content = params["content"]
-    @method = params["method"]
+    @model = params["model"] #投稿orユーザー
+    @content = params["content"] #フォームで入力したキーワード
+    @method = params["method"] #一致条件
 
     if @model == "post"
       @posts = Post.search_for(@content, @method)

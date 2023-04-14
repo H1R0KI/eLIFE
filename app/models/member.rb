@@ -39,13 +39,13 @@ class Member < ApplicationRecord
   #検索方法分岐
   def self.search_for(content, method)
     if method == "perfect"
-      Member.where(name: content)
+      Member.where(name: content) #完全一致
     elsif method == "forward"
-      Member.where("name LIKE ?", content + "%")
+      Member.where("name LIKE ?", content + "%") #前方一致
     elsif method == "backward"
-      Member.where("name LiKE ?", "%" + content)
+      Member.where("name LiKE ?", "%" + content) #後方一致
     else
-      Member.where("name LIKE ?", "%" + content + "%")
+      Member.where("name LIKE ?", "%" + content + "%") #部分一致
     end
   end
 

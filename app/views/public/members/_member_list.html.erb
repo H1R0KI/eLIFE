@@ -1,26 +1,32 @@
 <table class="table table-hover">
 <% @members.each do |member| %>
-  <tr id="member_<%= member.id %>">
-    <td class="text-center align-middle", style="width: 15%">
-      <%= image_tag member.get_profile_image, size:"70x70" %></br>
-      <%= link_to member.name, member_path(member.id) %>
-    </td>
-    <td class="text-center align-middle follow_btn", style="width: 15%">
-      <% if current_member != member %>
-        <%= render 'public/follows/follow_btn', member: member %>
-      <% else %>
-        <%= link_to member_path(current_member), class: "font-weight-bold btn btn-sm btn-secondary rounded-pill" do %>
-          マイページ
+  <% if member.name == "guestmember" %> <!--ゲストユーザーを一覧に表示しない為の分岐-->
+
+  <% elsif member.is_deleted == false %> <!--退会ユーザーを一覧に表示しない為の分岐-->
+    <tr id="member_<%= member.id %>">
+      <td class="text-center align-middle", style="width: 15%">
+        <%= image_tag member.get_profile_image, size:"70x70" %></br>
+        <%= link_to member.name, member_path(member.id) %>
+      </td>
+      <td class="text-center align-middle follow_btn", style="width: 15%">
+        <% if current_member != member %> <!--自分以外のユーザーにはフォローボタンを表示-->
+          <%= render 'public/follows/follow_btn', member: member %>
+        <% else %> <!--自分にはマイページへのリンクを表示-->
+          <%= link_to member_path(current_member), class: "font-weight-bold btn btn-sm btn-secondary rounded-pill" do %>
+            マイページ
+          <% end %>
         <% end %>
-      <% end %>
-    </td>
-    <td class="align-middle", style="width: 15%">
-      　フォロー：<%= link_to member.followings.count, member_followings_path(member) %></br></br>
-      フォロワー：<%= link_to member.followers.count, member_followers_path(member) %>
-    </td>
-    <td class="align-middle">
-      <%= member.introduction %>
-    </td>
-  </tr>
+      </td>
+      <td class="align-middle", style="width: 15%">
+        　フォロー：<%= link_to member.followings.count, member_followings_path(member) %></br></br>
+        フォロワー：<%= link_to member.followers.count, member_followers_path(member) %>
+      </td>
+      <td class="align-middle">
+        <%= member.introduction %>
+      </td>
+    </tr>
+  <% else %>
+
+  <% end %>
 <% end %>
 </table>
