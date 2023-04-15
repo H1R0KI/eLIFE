@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   #管理者側のルーティング
   devise_for :admin,  skip: [:registrations, :passwords], controllers: {
-    sessions: "admin/sessions"
+    sessions: 'admin/sessions'
   }
 
   namespace :admin do
@@ -14,7 +14,7 @@ Rails.application.routes.draw do
 
   #会員側のルーティング
   devise_for :members, skip: [:passwords], controllers: {
-    registrations: "public/registrations",
+    registrations: 'public/registrations',
     sessions: 'public/sessions'
   }
 
@@ -53,7 +53,9 @@ Rails.application.routes.draw do
     end
 
     #キーワード検索
-    get "search" => "searches#search"
+    get 'search' => 'searches#search'
+
+    get 'item_search' => 'searches#item_search'
 
   end
 
