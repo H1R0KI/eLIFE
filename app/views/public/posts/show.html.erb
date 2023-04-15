@@ -40,7 +40,11 @@
     <div class="col-1"></div>
 
     <div class="col-4 border-left border-right">
-      <%= link_to "商品検索", item_search_path %>
+      <%= form_tag :item_search, URL: item_search_path, method: :get do  %>
+        <%= label_tag :keyword, '商品検索' %>
+        <%= text_field_tag 'keyword', params[:keyword], placeholder: "キーワードを入力" %>
+        <%= submit_tag "検索" %>
+      <% end %>
       <%= render 'member_side', tag: @tag %>
     </div>
   </div>

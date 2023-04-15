@@ -9,10 +9,10 @@ class Public::SearchesController < ApplicationController
     @method = params["method"] #一致条件
 
     if @model == "post"
-      @posts = Post.search_for(@content, @method)
+      @posts = Post.search_for(@content, @method).page(params[:page])
       render "public/searches/search_result"
     else
-      @members = Member.search_for(@content, @method)
+      @members = Member.search_for(@content, @method).page(params[:page])
       render "public/searches/search_result"
     end
   end

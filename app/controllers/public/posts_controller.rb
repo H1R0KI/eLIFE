@@ -65,13 +65,13 @@ class Public::PostsController < ApplicationController
   def search
       @tags = Tag.all
       @tag = Tag.find(params[:tag_id])
-      @posts = @tag.posts.all
+      @posts = @tag.posts.all.page(params[:page])
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, image: [])
+    params.require(:post).permit(:title, :genre, :body, image: [])
   end
 
 end

@@ -33,22 +33,17 @@ class Post < ApplicationRecord
     end
   end
 
-  #検索の一致方法分岐
+  #キーワードがタイトルか本文に入っていれば結果に表示する
   def self.search_for(content, method)
-    if method == "perfect"
-      Post.where(title: content) #完全一致
-    elsif method == "forward"
-      Post.where("title LIKE ?", content + "%") #前方一致
-    elsif method == "backward"
-      Post.where("title LiKE ?", "%" + content) #後方一致
-    else
-      Post.where("title LIKE ?", "%" + content + "%") #部分一致
-    end
+    Post.where("title LIKE ?", "%" + content + "%")
+    Post.where("body LIKE ?", "%" + content + "%")
   end
 
   #同じユーザーが同じ投稿に複数いいねできないようにする
   def favorited_by?(member)
     favorites.exists?(member_id: member.id)
   end
+
+  enum genre: { cleaning: 0, laundry: 1, cooking: 2, care: 3, other: 4}
 
 end

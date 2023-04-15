@@ -12,6 +12,12 @@
           <%= f.text_field :title, class: "form-control" %>
         </div>
         <div class="form-group pb-2">
+          <label for="title">ジャンル</label>
+          <p>
+            <%= f.select :genre, Post.genres.keys.map {|k| [I18n.t("enums.post.genre.#{k}"), k]} %>
+          </p>
+        </div>
+        <div class="form-group pb-2">
           <label for="post-tag">タグ</label>
           <p>
             <%= f.text_field :tag_name, placeholder: "例：サンプル,テスト,example", class: "form-control" %>

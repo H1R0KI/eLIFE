@@ -5,6 +5,7 @@
         <div class="card-body", style="background-color: #f5f5f5;">
           <div id="post_<%= post.id %>">
             <h5 class="my-3" ><%= link_to post.title, post_path(post.id) %></h5>
+            <p class="card-text small"><i class="fas fa-folder"></i>&nbsp;<%= post.genre_i18n %></p>
             <p class="card-text"><%= post.body.truncate(50) %></p>
             <p class="card-text small pt-2">
               <%= image_tag post.member.get_profile_image, size:"20x20" %>

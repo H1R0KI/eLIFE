@@ -14,3 +14,10 @@
           family: "夫婦と子供"
           family_and_relative: "家族と親族"
           others: "その他"
+      post:
+        genre:
+          cleaning: "掃除"
+          laundry: "洗濯"
+          cooking: "料理"
+          care: "育児・介護"
+          other: "その他"
