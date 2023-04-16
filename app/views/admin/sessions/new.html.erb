@@ -1,19 +1,31 @@
-<h2>管理者ログイン</h2>
+<%= flash[:notice] %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="container">
+  <div class="row py-3">
+    <div class="col-3"></div>
+
+    <div class="col-6">
+      <div class="border-bottom">
+        <h4 class="font-weight-bold">管理者ログイン</h4>
+      </div>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <table class="table table-borderless">
+          <tr>
+            <td style="width: 60%">メールアドレス</td>
+            <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+          </tr>
+
+          <tr>
+            <td>パスワード</td>
+            <td><%= f.password_field :password, autocomplete: "current-password" %></td>
+          </tr>
+
+          <tr>
+            <td class="text-right pt-4 btn-lg"><%= f.submit "ログイン" %></td>
+          </tr>
+        </table>
+      <% end %>
+      <%= render "admin/shared/links" %>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :パスワード %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "ログイン" %>
-  </div>
-<% end %>
-
-<%= render "admin/shared/links" %>
+</div>

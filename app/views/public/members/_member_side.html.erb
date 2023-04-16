@@ -1,0 +1,34 @@
+<div class="border rounded p-3", id="member_<%= @member_id %>">
+  <p class="text-center pt-3"><%= image_tag @member.get_profile_image, class: "rounded-circle", size:"80x80"%></p>
+  <p class="text-center"><%= @member.name %></p>
+  <p class="text-center follow_btn">
+    <% if @member_id == current_member.id %>
+      <%= link_to edit_member_path(@member.id), class: "btn btn-sm btn-secondary rounded-pill" do %>
+        <i class="fas fa-user-cog"></i> 編集する
+      <% end %>
+    <% else %>
+      <%= render 'public/follows/follow_btn', member: @member %>
+    <% end %>
+  </p>
+  <table class="table">
+    <tr>
+      <th style="width: 45%">フォロー数</th>
+      <td><%= link_to @member.followings.count, member_followings_path(@member) %></td>
+    </tr>
+    <tr>
+      <th>フォロワー数</th>
+      <td><%= link_to @member.followers.count, member_followers_path(@member) %></td>
+    </tr>
+    <tr>
+      <th>年代</th>
+      <td><%= @member.age_i18n %></td>
+    </tr>
+    <tr>
+      <th>世帯構成</th>
+      <td><%= @member.composition_i18n %></td>
+    </tr>
+    <p>
+      <%= @member.introduction %>
+    </p>
+  </table>
+</div>

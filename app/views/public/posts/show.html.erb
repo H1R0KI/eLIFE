@@ -3,9 +3,25 @@
 <div class="container">
   <div class="row">
 
-    <div class="col-7 mt-5", id="post_<%= @post.id %>">
+    <div class="col-4 pt-4">
+      <div class="border border-success rounded p-3">
+        <%= render 'member_side' %>
+      </div>
+      <div class="pt-5">
+        <%= form_tag :item_search, URL:item_search_path, method: :get do  %>
+          <%= label_tag :keyword, '楽天商品検索' %>
+          <%= text_field_tag 'keyword', params[:keyword], placeholder: "キーワードを入力" %>
+          <%= submit_tag "検索" %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-1"></div>
+
+    <div class="col-7 pt-4", id="post_<%= @post.id %>">
       <p class="h2 font-weight-bold"><%= @post.title %></p>
-      <span>
+      <i class="fas fa-folder"></i>&nbsp;<%= @post.genre_i18n %>
+      <span class="pl-5">
         <i class="fas fa-tag"></i>
         <% @post_tags.each do |tag| %>
           <%= link_to tag.name, tag_posts_path(tag_id: tag.id) %>
@@ -28,23 +44,12 @@
           <%= link_to "削除", post_path(@post.id), method: :delete, class: "btn btn-sm btn-danger" %>
         </div>
       <% else %>
-        <div class="favorite_btn">
+        <div class="favorite_btn h5">
           <%= render 'public/favorites/favorite_btn', post: @post %>
         </div>
       <% end %>
       <div class="comment_area">
         <%= render 'public/post_comments/comment_area', post: @post %>
       </div>
-    </div>
-
-    <div class="col-1"></div>
-
-    <div class="col-4 border-left border-right">
-      <%= form_tag :item_search, URL: item_search_path, method: :get do  %>
-        <%= label_tag :keyword, '商品検索' %>
-        <%= text_field_tag 'keyword', params[:keyword], placeholder: "キーワードを入力" %>
-        <%= submit_tag "検索" %>
-      <% end %>
-      <%= render 'member_side', tag: @tag %>
     </div>
   </div>

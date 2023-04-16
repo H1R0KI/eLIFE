@@ -36,8 +36,12 @@
         <% end %>
       </tr>
     </table>
-       <%= link_to edit_admin_member_path(@member.id), class: 'text-light' do %>
-        <button class="btn btn-success" type="submit">編集する</button>
+      <%= form_with model: @member, url:admin_member_path(@member.id), method: :patch do |f| %>
+          <%= f.radio_button :is_deleted, false %>
+          <%= f.label :is_deleted, '有効' %>
+          <%= f.radio_button :is_deleted, true %>
+          <%= f.label :is_deleted, '退会' %>
+      <%= f.submit '変更を保存', class: "btn btn-success" %>
       <% end %>
     </div>
   </div>

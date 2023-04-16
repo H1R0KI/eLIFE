@@ -30,7 +30,6 @@ Rails.application.routes.draw do
       patch 'quit' => 'members#quit'
       member do
         get :favorites
-        get :posts
       end
       resource :follows, only: [:create, :destroy]
       get 'followings' => 'follows#followings', as: 'followings'
