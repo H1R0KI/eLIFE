@@ -22,7 +22,6 @@ Rails.application.routes.draw do
 
     #ホーム
     root to: 'homes#top'
-    get '/about' => 'homes#about'
 
     #メンバー関連
     resources :members, only: [:index, :edit, :show, :update] do

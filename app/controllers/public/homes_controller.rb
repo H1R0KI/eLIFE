@@ -5,6 +5,4 @@ class Public::HomesController < ApplicationController
     @member_post_ranks = Member.where(id: Post.group(:member_id).order('count(member_id) desc').limit(5).pluck(:member_id))
   end
 
-  def about
-  end
 end
