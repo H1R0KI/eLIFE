@@ -9,6 +9,7 @@
         <%= link_to member.name, member_path(member.id) %>
       </td>
       <td class="text-center align-middle follow_btn", style="width: 15%">
+      <% if member_signed_in? %>
         <% if current_member != member %> <!--自分以外のユーザーにはフォローボタンを表示-->
           <%= render 'public/follows/follow_btn', member: member %>
         <% else %> <!--自分にはマイページへのリンクを表示-->
@@ -16,6 +17,8 @@
             マイページ
           <% end %>
         <% end %>
+      <% else %>
+      <% end %>
       </td>
       <td class="align-middle", style="width: 15%">
         　フォロー：<%= link_to member.followings.count, member_followings_path(member) %></br></br>

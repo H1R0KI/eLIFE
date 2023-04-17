@@ -18,9 +18,12 @@
     </div>
   </div>
 <% end %>
-<div class="pt-2">
-  <%= form_with model: [@post, @post_comment], local: false do |f| %>
-    <p><%= f.text_area :comment, rows: '2', placeholdaer: "ここにコメントを入力" %></p>
-    <p><%= f.submit "コメントする" %></p>
-  <% end %>
-</div>
+<% if member_signed_in? %>
+  <div class="pt-2">
+    <%= form_with model: [@post, @post_comment], local: false do |f| %>
+      <p><%= f.text_area :comment, rows: '2', placeholdaer: "ここにコメントを入力" %></p>
+      <p><%= f.submit "コメントする" %></p>
+    <% end %>
+  </div>
+<% else %>
+<% end %>

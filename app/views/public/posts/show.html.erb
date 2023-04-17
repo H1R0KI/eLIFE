@@ -4,7 +4,26 @@
   <div class="row">
 
     <div class="col-4 pt-4">
-      <div class="border border-success rounded p-3">
+      <div class="border border-success rounded p-4">
+        <% if member_signed_in? %>
+        <% else %>
+          <div class="text-center pb-2">
+            こちらからお試しでご利用できます。
+          </div>
+          <div class="text-center pr-3 pb-3">
+            <%= link_to 'ゲストログイン', members_guest_sign_in_path, class: "btn btn-secondary mb-3", method: :post %></br>
+          </div>
+          <div class="text-center pb-2">
+            全ての機能をご利用するには</br>
+            新規登録、またはログインが必要です。</br>
+          </div>
+          <div class="text-center pr-3">
+            <%= link_to 'ログイン',new_member_session_path, class: "btn btn-info mr-4" %>
+            <%= link_to '新規登録',new_member_registration_path, class: "btn btn-success" %>
+          </div>
+        <% end %>
+      </div>
+      <div class="border border rounded p-4 my-3", style="border-color: #6c757d;">
         <%= render 'member_side' %>
       </div>
       <div class="pt-5">
@@ -38,15 +57,22 @@
           <% end %>
         <% end %>
       </div>
-      <% if @post.member == current_member %>
-        <div class="text-right">
-          <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-sm btn-success" %>
-          <%= link_to "削除", post_path(@post.id), method: :delete, class: "btn btn-sm btn-danger" %>
-        </div>
+      <% if member_signed_in? %>
+        <% if @post.member == current_member %>
+          <div class="text-right">
+            <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-sm btn-success" %>
+            <%= link_to "削除", post_path(@post.id), method: :delete, class: "btn btn-sm btn-danger" %>
+          </div>
+        <% else %>
+          <div class="favorite_btn h5">
+            <%= render 'public/favorites/favorite_btn', post: @post %>
+          </div>
+        <% end %>
       <% else %>
-        <div class="favorite_btn h5">
-          <%= render 'public/favorites/favorite_btn', post: @post %>
-        </div>
+        <span class="text-warning">
+          <i class="fas fa-star"></i>
+        </span>
+        <%= @post.favorites.count %>
       <% end %>
       <div class="comment_area">
         <%= render 'public/post_comments/comment_area', post: @post %>

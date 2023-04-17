@@ -21,15 +21,25 @@
                     <%= image_tag post.member.get_profile_image, size:"20x20" %>
                     <%= link_to post.member.name, member_path(post.member_id) %>
                     <small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></small>
-                    <% if post.member == current_member %>
-                      &nbsp;&nbsp;<%= link_to "削除", post_path(post.id), class: "text-danger text-right", method: :delete %>
+                    <% if member_signed_in? %>
+                      <% if post.member == current_member %>
+                        &nbsp;&nbsp;<%= link_to "削除", post_path(post.id), class: "text-danger text-right", method: :delete %>
+                      <% end %>
+                      <div class="text-right ">
+                        <span class="favorite_btn">
+                        <%= render 'public/favorites/favorite_btn', post: post %>
+                        </span>
+                        &emsp;<i class="fas fa-comment text-primary"></i> <%= post.post_comments.count %>
+                      </div>
+                    <% else %>
+                      <div class="text-right ">
+                        <span class="text-warning">
+                          <i class="fas fa-star"></i>
+                        </span>
+                        <%= post.favorites.count %>
+                        &emsp;<i class="fas fa-comment text-primary"></i> <%= post.post_comments.count %>
+                      </div>
                     <% end %>
-                    <div class="text-right ">
-                      <span class="favorite_btn">
-                      <%= render 'public/favorites/favorite_btn', post: post %>
-                      </span>
-                      &emsp;<i class="fas fa-comment text-primary"></i> <%= post.post_comments.count %>
-                    </div>
                   </p>
                 </div>
               </div>

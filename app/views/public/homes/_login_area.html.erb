@@ -1,0 +1,16 @@
+<div class="border border-success rounded p-4">
+  <div class="text-center pb-2">
+    こちらからお試しでご利用できます。
+  </div>
+  <div class="text-center pr-3 pb-3">
+    <%= link_to 'ゲストログイン', members_guest_sign_in_path, class: "btn btn-secondary mb-3", method: :post %></br>
+  </div>
+  <div class="text-center pb-2">
+    全ての機能をご利用するには</br>
+    新規登録、またはログインが必要です。</br>
+  </div>
+  <div class="text-center pr-3">
+    <%= link_to 'ログイン',new_member_session_path, class: "btn btn-info mr-4" %>
+    <%= link_to '新規登録',new_member_registration_path, class: "btn btn-success" %>
+  </div>
+</div>

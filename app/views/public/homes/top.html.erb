@@ -1,25 +1,15 @@
+<div class="text-center py-3 mb-5", style="background-color: #DDFFDD;">
+  <p class="h1 font-weight-bold display-3">Let's enjoy life!</p>
+  <p>eLIFEは、生活の中でのライフハックや便利アイテムを共有するためのサービスです。</p>
+</div>
+
 <div class="container px-5 px-sm-0">
   <div class="row">
     <div class="col-4 pt-4">
       <% if member_signed_in? %>
         <%= render 'my_profile' %>
       <% else %>
-        <div class="border border-success rounded p-4">
-          <div class="text-center pb-2">
-            こちらからお試しでご利用できます。
-          </div>
-          <div class="text-center pr-3 pb-3">
-            <%= link_to 'ゲストログイン', members_guest_sign_in_path, class: "btn btn-secondary mb-3", method: :post %></br>
-          </div>
-          <div class="text-center pb-2">
-            全ての機能をご利用するには</br>
-            新規登録、またはログインが必要です。</br>
-          </div>
-          <div class="text-center pr-3">
-            <%= link_to 'ログイン',new_member_session_path, class: "btn btn-info mr-4" %>
-            <%= link_to '新規登録',new_member_registration_path, class: "btn btn-success" %>
-          </div>
-        </div>
+        <%= render 'login_area' %>
       <% end %>
       <div class="pt-2 mt-5">
         <div class="text-center h5">
@@ -70,6 +60,13 @@
                     </span>
                     &emsp;<i class="fas fa-comment text-primary"></i> <%= post.post_comments.count %>
                   <% else %>
+                    <div class="text-right ">
+                      <span class="text-warning">
+                        <i class="fas fa-star"></i>
+                      </span>
+                      <%= post.favorites.count %>
+                      &emsp;<i class="fas fa-comment text-primary"></i> <%= post.post_comments.count %>
+                    </div>
                   <% end %>
                   </div>
                 </div>

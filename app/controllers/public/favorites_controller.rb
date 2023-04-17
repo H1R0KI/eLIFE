@@ -1,5 +1,7 @@
 class Public::FavoritesController < ApplicationController
 
+  before_action :authenticate_member!
+
   def create
     @post = Post.find(params[:post_id])
     unless @post.favorited_by?(current_member)

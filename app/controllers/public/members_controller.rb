@@ -1,6 +1,6 @@
 class Public::MembersController < ApplicationController
 
-  before_action :authenticate_member!
+  before_action :authenticate_member!, only: [:edit, :update]
   before_action :set_member, only: [:favorites]
 
   def index
