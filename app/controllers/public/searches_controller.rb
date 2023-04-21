@@ -1,7 +1,5 @@
 class Public::SearchesController < ApplicationController
 
-  before_action :authenticate_member!
-
   def search
     @tags = Tag.all
     @model = params["model"] #投稿orユーザー

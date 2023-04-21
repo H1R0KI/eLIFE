@@ -1,20 +1,26 @@
-<table>
-  <thead>
-    <tr>
-      <th>商品名</th>
-      <th>価格</th>
-      <th>画像</th>
-    </tr>
-  </thead>
-  <tbody>
+<div class="text-center">
+  <%= render 'public/searches/rakuten_search' %>
+</div>
+<div class="container">
+  <div class="row py-5">
     <% if @items.present? %>
       <% @items.each do |item| %>
-      <tr>
-        <td><%= link_to item.name, "#{item.url}" %></td>
-        <td align="right"><%= number_with_delimiter(item.price) %>円</td>
-        <td><%= image_tag (item['smallImageUrls'][0]) %></td>
-      </tr>
+        <div class="card-deck mb-3">
+          <div class="card mr-auto", style="width:15rem;">
+            <div class="card-body", style="background-color: #f5f5f5;">
+              <div class="text-center">
+                <%= image_tag (item['smallImageUrls'][0]), size:"80x80" %>
+              </div>
+              <span class="small">
+                <%= link_to item.name.truncate(40), "#{item.url}" %>
+              </span></br>
+              <div class="text-center text-danger">
+                <%= number_with_delimiter(item.price) %>円
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
     <% end %>
-  </tbody>
-</table>
+  </div>
+</div>

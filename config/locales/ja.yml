@@ -5,9 +5,10 @@
           member:
             attributes:
               email:
-                blank: "メールアドレスを入力してください"
+                blank: "ハンドルネームを入力してください"
               name:
                 blank: "ハンドルネームを入力してください"
+              too_short: "ハンドルネームが短すぎます"
               password:
                 blank: "パスワードを入力してください"
     devise:

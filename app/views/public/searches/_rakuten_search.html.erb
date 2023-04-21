@@ -1,0 +1,7 @@
+<div class="pt-5">
+  <%= form_tag :item_search, URL:item_search_path, method: :get do  %>
+    <%= label_tag :keyword, '楽天商品検索' %>
+    <%= text_field_tag 'keyword', params[:keyword], placeholder: "キーワードを入力" %>
+    <%= submit_tag "検索" %>
+  <% end %>
+</div>

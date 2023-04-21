@@ -4,9 +4,9 @@
   <div class="row">
 
     <div class="col-4 pt-4">
-      <div class="border border-success rounded p-4">
-        <% if member_signed_in? %>
-        <% else %>
+      <% if member_signed_in? %>
+      <% else %>
+        <div class="border border-success rounded p-4">
           <div class="text-center pb-2">
             こちらからお試しでご利用できます。
           </div>
@@ -21,17 +21,13 @@
             <%= link_to 'ログイン',new_member_session_path, class: "btn btn-info mr-4" %>
             <%= link_to '新規登録',new_member_registration_path, class: "btn btn-success" %>
           </div>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
       <div class="border border rounded p-4 my-3", style="border-color: #6c757d;">
         <%= render 'member_side' %>
       </div>
       <div class="pt-5">
-        <%= form_tag :item_search, URL:item_search_path, method: :get do  %>
-          <%= label_tag :keyword, '楽天商品検索' %>
-          <%= text_field_tag 'keyword', params[:keyword], placeholder: "キーワードを入力" %>
-          <%= submit_tag "検索" %>
-        <% end %>
+        <%= render 'public/searches/rakuten_search' %>
       </div>
     </div>
 

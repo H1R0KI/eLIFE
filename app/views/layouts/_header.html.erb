@@ -40,9 +40,11 @@
           <li class="nav-link h5 text-nowrap pr-5">
             <%= link_to "HOME", root_path, class: "text-light text-decoration-none" %>
           </li>
+          <% if member_signed_in? %>
           <li class="nav-link h5 text-nowrap pr-5">
             <%= link_to "新規投稿", new_post_path, class: "text-light text-decoration-none" %>
           </li>
+          <% end %>
           <li class="nav-link h5 text-nowrap pr-5">
             <%= link_to "投稿一覧", posts_path, class: "text-light text-decoration-none" %>
             </li>
