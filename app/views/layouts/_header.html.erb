@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg pb-3", style="background-color: #1EAA00;">
+<nav class="navbar navbar-expand pt-3", style="background-color: #1EAA00;">
   <div class="collapse navbar-collapse">
-    <div class="text-left py-2 ml-4">
-      <%= link_to image_tag('LOGO_h.jpeg', width: '23%'), root_path %>
+    <div class="text-left py-2 ml-4 mb-3">
+      <%= link_to image_tag('LOGO_h.jpeg', width: '30%'), root_path %>
     </div>
     <div class="d-flex flex-column">
       <ul class="navbar-nav">
-        <li class="h5 text-nowrap pr-3">
+        <li class="h5 text-nowrap pr-3 pt-2 mt-1 mr-5">
           <%= render 'layouts/search' %>
         </li>
         <% if member_signed_in? %>
@@ -27,23 +27,23 @@
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "text-light text-decoration-none" %>
           </li>
         <% else %>
-          <li class="nav-link h5 text-nowrap pr-3">
-            <%= link_to "ログイン", member_session_path, class: "text-light text-decoration-none" %>
+          <li class="nav-link h5 text-nowrap pr-3 pt-3">
+            <%= link_to "ログイン", member_session_path, class: "text-light text-decoration-none font-weight-bold" %>
           </li>
           <li class="nav-link h5 text-nowrap pr-3">
-            <%= link_to "新規登録", new_member_registration_path, class: "text-light text-decoration-none" %>
+            <%= link_to "新規登録", new_member_registration_path, class: "btn btn-outline-light text-decoration-none font-weight-bold" %>
           </li>
         <% end %>
       </ul>
       <div class="d-flex flex-column">
-        <ul class="navbar-nav">
-          <li class="nav-link h5 text-nowrap pr-3">
+        <ul class="navbar-nav justify-content-end active">
+          <li class="nav-link h5 text-nowrap pr-5">
             <%= link_to "HOME", root_path, class: "text-light text-decoration-none" %>
           </li>
-          <li class="nav-link h5 text-nowrap pr-3">
+          <li class="nav-link h5 text-nowrap pr-5">
             <%= link_to "新規投稿", new_post_path, class: "text-light text-decoration-none" %>
           </li>
-          <li class="nav-link h5 text-nowrap pr-3">
+          <li class="nav-link h5 text-nowrap pr-5">
             <%= link_to "投稿一覧", posts_path, class: "text-light text-decoration-none" %>
             </li>
           <li class="nav-link h5 text-nowrap pr-3">

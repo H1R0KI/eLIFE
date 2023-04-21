@@ -17,6 +17,8 @@ class Member < ApplicationRecord
 
   validates :name, uniqueness: true, length: { in: 2..20 }
   validates :introduction, length: { maximum: 100 }
+  validates :email, presence: true
+  validates :password, presence: true
 
   has_one_attached :profile_image
 

@@ -1,7 +1,7 @@
 <div class="search_form">
   <%= form_with url: search_path, method: :get, local: true do |f| %>
     <%= f.text_field :content, placeholder: "キーワードを入力", class: "rounded" %>
-    <%= f.select :model, options_for_select({ "投稿" => "post", "ユーザー" => "member"}) %>
-    <%= f.submit "検索", class: "btn btn-sm btn-outline-light font-weight-bold" %>
+    <%= f.select :model, options_for_select({ "投稿" => "post", "ユーザー" => "member"}), class: "rounded" %>
+    <%= f.submit "検索", class: "btn btn-sm btn-light font-weight-bold border-dark mb-1" %>
   <% end %>
 </div>

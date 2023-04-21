@@ -1,11 +1,11 @@
 <%= flash[:notice] %>
 
 <div class="container">
-  <div class="row py-3">
+  <div class="row py-5">
     <div class="col-3"></div>
 
     <div class="col-6">
-      <div class="border-bottom">
+      <div class="border-bottom mb-5">
         <h4 class="font-weight-bold">ログイン</h4>
       </div>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -21,13 +21,14 @@
           </tr>
 
           <tr>
-            <td class="text-right pt-4 btn-lg"><%= f.submit "ログイン" %></td>
+            <td class="text-right py-4 btn-lg"><%= f.submit "ログイン", class: "px-2 btn-success rounded" %></td>
           </tr>
         </table>
       <% end %>
 
       <div class="text-center">
-        <span class="small">新規登録は</span><%= render "public/shared/links" %>
+        <span class="small">新規登録は</span><%= render "public/shared/links" %></br>
+        <span class="small">お試しで利用したい方は</span><%= link_to 'ゲストログイン', members_guest_sign_in_path, class: "ml-2", method: :post %>
       </div>
     </div>
   </div>
