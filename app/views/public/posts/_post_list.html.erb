@@ -4,9 +4,9 @@
       <div class="card">
         <div class="card-body", style="background-color: #f5f5f5;">
           <div id="post_<%= post.id %>">
-            <h5 class="my-2" ><%= link_to post.title, post_path(post.id), class: "text-dark" %></h5>
+            <h5><%= link_to post.title, post_path(post.id), class: "text-dark" %></h5>
             <p class="card-text small"><i class="fas fa-folder"></i>&nbsp;<%= post.genre_i18n %></p>
-            <p class="card-text small pt-2">
+            <div class="card-text small pt-1">
               <%= image_tag post.member.get_profile_image, size:"20x20" %>
               <%= link_to post.member.name, member_path(post.member_id) %>
               <small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></small>
@@ -14,14 +14,14 @@
                 <% if post.member == current_member %>
                   &nbsp;&nbsp;<%= link_to "削除", post_path(post.id), class: "text-danger text-right", method: :delete %>
                 <% end %>
-                <div class="text-right ">
+                <div class="text-right">
                   <span class="favorite_btn">
                   <%= render 'public/favorites/favorite_btn', post: post %>
                   </span>
                   &emsp;<i class="fas fa-comment text-primary"></i> <%= post.post_comments.count %>
                 </div>
               <% else %>
-                <div class="text-right ">
+                <div class="text-right">
                   <span class="text-warning">
                     <i class="fas fa-star"></i>
                   </span>
@@ -29,7 +29,7 @@
                   &emsp;<i class="fas fa-comment text-primary"></i> <%= post.post_comments.count %>
                 </div>
               <% end %>
-            </p>
+            </div>
           </div>
         </div>
       </div>
@@ -37,4 +37,4 @@
   <% else %>
   <% end %>
 <% end %>
-<%= paginate @posts, class: "text-center" %>
+<%= paginate @posts %>

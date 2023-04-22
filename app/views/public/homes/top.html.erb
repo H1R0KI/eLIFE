@@ -1,9 +1,9 @@
 <div class="text-center py-3 mb-5", style="background-color: #DDFFDD;">
   <p class="h1 font-weight-lighter font-italic display-2">Let's enjoy life!</p>
-  <p class="text-secondary">- eLIFEは、生活の中でのライフハックや便利アイテムを共有するためのサービスです。-</p>
+  <p class="text-secondary">eLIFEは、生活の中でのライフハックや便利アイテムを共有するためのサービスです。</p>
 </div>
 
-<div class="container px-5 px-sm-0">
+<div class="container pt-2 pb-3 px-sm-0">
   <div class="row">
     <div class="col-4 pt-4">
       <% if member_signed_in? %>
@@ -36,7 +36,7 @@
 
     <div class="col-7">
       <div class="text-center h4 border-bottom border-dark pb-2 mb-5">
-        <strong>週間イイね！数ランキングTOP5</strong>
+        <strong>週間イイね<i class="far fa-thumbs-up"></i>数ランキングTOP5</strong>
       </div>
       <% @week_post_favorite_ranks.each.with_index(1) do |post, i| %>
         <span class="h4 pr-5">第<%= i %>位</span>週間カウント：

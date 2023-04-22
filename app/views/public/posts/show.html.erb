@@ -1,7 +1,7 @@
-<p class=""><%= flash[:notice] %></p>
+<%= flash[:notice] %>
 
 <div class="container">
-  <div class="row">
+  <div class="row py-3">
 
     <div class="col-4 pt-4">
       <% if member_signed_in? %>
@@ -55,12 +55,11 @@
           <% end %>
         <% end %>
       </div>
-      <span class="text-warning">
-        <i class="fas fa-star"></i>
-      </span>
-      <%= @post.favorites.count %>
       <% if member_signed_in? %>
         <% if @post.member == current_member %>
+          <span>
+            <h5><i class="fas fa-thumbs-up text-warning"></i>&nbsp;<%= @post.favorites.count %></h5>
+          </span>
           <div class="text-right">
             <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-sm btn-success" %>
             <%= link_to "削除", post_path(@post.id), method: :delete, class: "btn btn-sm btn-danger" %>

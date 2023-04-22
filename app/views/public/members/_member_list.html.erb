@@ -6,7 +6,7 @@
     <tr id="member_<%= member.id %>">
       <td class="text-center align-middle", style="width: 15%">
         <%= image_tag member.get_profile_image, size:"70x70" %></br>
-        <%= link_to member.name, member_path(member.id) %>
+        <%= link_to member.name, member_path(member.id), class: "text-dark" %>
       </td>
       <td class="text-center align-middle follow_btn", style="width: 15%">
       <% if member_signed_in? %>
@@ -21,11 +21,15 @@
       <% end %>
       </td>
       <td class="align-middle", style="width: 15%">
-        　フォロー：<%= link_to member.followings.count, member_followings_path(member) %></br></br>
-        フォロワー：<%= link_to member.followers.count, member_followers_path(member) %>
+        　フォロー：<%= link_to member.followings.count, member_followings_path(member), class: "text-dark" %></br></br>
+        フォロワー：<%= link_to member.followers.count, member_followers_path(member), class: "text-dark" %>
       </td>
       <td class="align-middle">
-        <%= member.introduction %>
+        <% if member.introduction == "" %>
+          自己紹介文がありません。
+        <% else %>
+          <%= member.introduction %>
+        <% end %>
       </td>
     </tr>
   <% else %>
