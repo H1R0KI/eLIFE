@@ -1,7 +1,7 @@
 <div id="member_<%= @post.member_id %>">
   <h5 class="text-center">投稿者プロフィール</h5>
   <p class="text-center pt-3"><%= image_tag @post.member.get_profile_image, class: "rounded-circle", size:"80x80"%></p>
-  <p class="text-center"><%= link_to @post.member.name, member_path(@post.member_id) %></p>
+  <p class="text-center"><%= link_to @post.member.name, member_path(@post.member_id), class: "text-dark" %></p>
   <p class="text-center follow_btn">
     <% if member_signed_in? %>
       <% if @post.member_id == current_member.id %>
@@ -17,11 +17,11 @@
   <table class="table">
     <tr>
       <th style="width: 45%">フォロー数</th>
-      <td><%= link_to @post.member.followings.count, member_followings_path(@post.member) %></td>
+      <td><%= link_to @post.member.followings.count, member_followings_path(@post.member), class: "text-dark" %></td>
     </tr>
     <tr>
       <th>フォロワー数</th>
-      <td><%= link_to @post.member.followers.count, member_followers_path(@post.member) %></td>
+      <td><%= link_to @post.member.followers.count, member_followers_path(@post.member), class: "text-dark" %></td>
     </tr>
     <tr>
       <th>年代</th>

@@ -1,28 +1,28 @@
-<div class="pt-5 border-bottom">
-  コメント(<%= @post.post_comments.count %>)
+<div class="pt-5 pb-2 border-bottom border-dark">
+  <strong>コメント(<%= @post.post_comments.count %>)</strong>
 </div>
 <% @post.post_comments.each do |post_comment| %>
   <div class="border-bottom py-3">
-    <div><%= post_comment.comment %></div>
+    <div class="mb-3"><%= post_comment.comment %></div>
     <div class="small">
       <%= image_tag post_comment.member.get_profile_image, class: "rounded-circle", size:"15x15"%>
+      <%= link_to post_comment.member.name, member_path(post_comment.member_id), class: "text-dark" %>
       <% if post_comment.member == @post.member %>
-        <%= link_to post_comment.member.name, member_path(post_comment.member_id) %>(投稿者)
+        <strong>(投稿者)</strong>
       <% else %>
-        <%= link_to post_comment.member.name, member_path(post_comment.member_id) %>
       <% end %>
-      <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
+        <span class="mx-2"><%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %></span>
       <% if post_comment.member == current_member %>
-        <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true %>
+        <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), class: "text-danger", method: :delete, remote: true %>
       <% end %>
     </div>
   </div>
 <% end %>
 <% if member_signed_in? %>
-  <div class="pt-2">
+  <div class="pt-3">
     <%= form_with model: [@post, @post_comment], local: false do |f| %>
-      <p><%= f.text_area :comment, rows: '2', placeholdaer: "ここにコメントを入力" %></p>
-      <p><%= f.submit "コメントする" %></p>
+      <div><%= f.text_area :comment, rows: '3', style: "width:100%;" , placeholder: "ここにコメントを入力" %></div>
+      <div class="pt-2"><%= f.submit "コメントする", class: "small" %></div>
     <% end %>
   </div>
 <% else %>

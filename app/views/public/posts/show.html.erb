@@ -39,20 +39,26 @@
       <span class="pl-5">
         <i class="fas fa-tag"></i>
         <% @post_tags.each do |tag| %>
-          <%= link_to tag.name, tag_posts_path(tag_id: tag.id) %>
+          <%= link_to tag.name, tag_posts_path(tag_id: tag.id), class: "text-dark" %>
         <% end %>
       </span></br>
       <small class="text-muted">投稿日&nbsp;<%= @post.created_at.strftime('%Y/%m/%d %H:%M') %></small></br>
-      <div class="mt-2 pt-5 pb-3 border-top">
+      <div class="mt-2 py-5 border-top">
         <%= @post.body %>
       </div>
       <div class="mb-3">
         <% if @post.image.attached? %>
           <% @post.image.each do |image| %>
-            <%= image_tag image.variant(resize:'400x400') %>
+            <div class="d-flex justify-content-center pb-5">
+              <%= image_tag image.variant(resize:'300x300') %>
+            </div>
           <% end %>
         <% end %>
       </div>
+      <span class="text-warning">
+        <i class="fas fa-star"></i>
+      </span>
+      <%= @post.favorites.count %>
       <% if member_signed_in? %>
         <% if @post.member == current_member %>
           <div class="text-right">
@@ -65,10 +71,6 @@
           </div>
         <% end %>
       <% else %>
-        <span class="text-warning">
-          <i class="fas fa-star"></i>
-        </span>
-        <%= @post.favorites.count %>
       <% end %>
       <div class="comment_area">
         <%= render 'public/post_comments/comment_area', post: @post %>
