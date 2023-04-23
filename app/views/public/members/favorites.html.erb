@@ -1,12 +1,19 @@
-<div class="container px-5 px-sm-0">
+<div class="container py-5 px-sm-0">
+  <h4 class="border-bottom border-secondary pb-2 mb-5">
+    <% if @member = current_member %>
+      <strong>マイプロフィール</strong>
+    <% else %>
+      <strong>ユーザー詳細</strong>
+    <% end %>
+  </h4>
   <div class="row">
     <div class="col-4 pt-4">
       <%= render 'member_side', member: @member %>
     </div>
 
     <div class="col-8">
-      <div class="h4 text-center font-weight-bold">
-        <%= link_to "投稿一覧", member_path(@member), class: "text-dark" %>｜<u><%= link_to "いいねした投稿", favorites_member_path(@member), class: "text-dark" %></u>
+      <div class="h5 text-center font-weight-bold">
+        <%= link_to "投稿一覧", member_path(@member), class: "text-dark text-decoration-none" %>｜<u class="text-dark">いいねした投稿</u>
       </div>
       <div class="small">
         <% @favorite_posts.each do |post| %>
@@ -22,9 +29,6 @@
                     <%= link_to post.member.name, member_path(post.member_id) %>
                     <small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></small>
                     <% if member_signed_in? %>
-                      <% if post.member == current_member %>
-                        &nbsp;&nbsp;<%= link_to "削除", post_path(post.id), class: "text-danger text-right", method: :delete %>
-                      <% end %>
                       <div class="text-right ">
                         <span class="favorite_btn">
                         <%= render 'public/favorites/favorite_btn', post: post %>

@@ -22,7 +22,6 @@ class Public::MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update(member_params)
-      flash[:notice] = "プロフィールを更新しました"
       redirect_to member_path(@member.id)
     else
       render :edit

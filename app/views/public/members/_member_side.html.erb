@@ -3,8 +3,8 @@
   <p class="text-center"><%= @member.name %></p>
   <p class="text-center follow_btn">
     <% if member_signed_in? %>
-      <% if @member_id == current_member.id %>
-        <%= link_to edit_member_path(@member.id), class: "text-dark btn btn-sm btn-secondary rounded-pill" do %>
+      <% if @member == current_member %>
+        <%= link_to edit_member_path(@member.id), class: "btn btn-sm btn-secondary rounded-pill" do %>
           <i class="fas fa-user-cog"></i> 編集する
         <% end %>
       <% else %>

@@ -15,10 +15,8 @@ class Member < ApplicationRecord
   has_many :followings, through: :follows, source: :following
   has_many :followers, through: :reverse_of_follows, source: :follower
 
-  validates :name, uniqueness: true, length: { in: 2..20 }, presence: true
+  validates :name, uniqueness: true, length: { in: 2..20 }
   validates :introduction, length: { maximum: 100 }
-  validates :email, presence: true
-  validates :password, presence: true
 
   has_one_attached :profile_image
 
