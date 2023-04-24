@@ -1,14 +1,23 @@
-<div class="container px-5 px-sm-0">
+<div class="container py-5 px-sm-0">
+  <h4 class="border-bottom border-secondary pb-2 mb-5">
+    <% if @member == current_member %>
+      <strong>マイプロフィール</strong>
+    <% else %>
+      <strong>ユーザー詳細</strong>
+    <% end %>
+  </h4>
   <div class="row">
+    <div class="col-4 pt-4">
+      <%= render 'public/members/member_side', members: @members %>
+    </div>
     <div class="col-1"></div>
-    <div class="col-10 pt-5">
-      <h3 class="font-weight-bold pb-4">フォローユーザー</h3>
+    <div class="col-7">
+      <h5 class="text-center font-weight-bold pb-1">フォローしているユーザー</h5>
       <% if @members.exists? %>
         <%= render 'public/members/member_list', members: @members %>
       <% else %>
-        <p>ユーザーはいません</p>
+        <p class="text-center pt-5">ユーザーはいません<i class="far fa-surprise"></i></p>
       <% end %>
-    <div class="col-1"></div>
     </div>
   </div>
 </div>

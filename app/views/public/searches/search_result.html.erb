@@ -1,10 +1,13 @@
-<div class="container px-5 px-sm-0">
+<div class="container py-5 px-sm-0">
   <div class="row">
     <% if @model == 'post' %>
       <div class="col-3">
-        <%= render 'public/posts/tag_list', tag: @tag %>
+        <div class="h4 mt-2">タグ一覧</div>
+        <% @tags.each do |tag| %>
+          <li><%= link_to tag.name, tag_posts_path(tag.id) %> (<%= tag.posts.count %>)</li>
+        <% end %>
       </div>
-      <div class="col-9 pt-5">
+      <div class="col-9">
         <div class="h2 text-center">"<%= @content %>" の投稿検索結果 全<%= @posts.count %>件</div>
         <%= render 'public/posts/post_list', post: @posts %>
       </div>

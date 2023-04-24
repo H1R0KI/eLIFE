@@ -5,7 +5,14 @@
         <div class="card-body", style="background-color: #f5f5f5;">
           <div id="post_<%= post.id %>">
             <h5><%= link_to post.title, post_path(post.id), class: "text-dark" %></h5>
-            <p class="card-text small"><i class="fas fa-folder"></i>&nbsp;<%= post.genre_i18n %></p>
+            <p class="card-text small">ジャンル：<%= post.genre_i18n %>
+              <span class="pl-5">
+                <i class="fas fa-tag"></i>
+                <% post.tags.each do |tag| %>
+                  <%= link_to tag.name, tag_posts_path(tag_id: tag.id), class: "text-dark" %>
+                <% end %>
+              </span>
+            </p>
             <div class="card-text small pt-1">
               <%= image_tag post.member.get_profile_image, size:"20x20" %>
               <%= link_to post.member.name, member_path(post.member_id) %>
