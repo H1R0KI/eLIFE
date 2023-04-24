@@ -16,6 +16,10 @@
   </p>
   <table class="table">
     <tr>
+      <th>投稿数</th>
+      <td><%= link_to @post.member.posts.count, member_path(@post.member), class: "text-dark" %></td>
+    </tr>
+    <tr>
       <th style="width: 45%">フォロー数</th>
       <td><%= link_to @post.member.followings.count, member_followings_path(@post.member), class: "text-dark" %></td>
     </tr>

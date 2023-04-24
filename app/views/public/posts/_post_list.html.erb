@@ -9,7 +9,7 @@
               <span class="pl-5">
                 <i class="fas fa-tag"></i>
                 <% post.tags.each do |tag| %>
-                  <%= link_to tag.name, tag_posts_path(tag_id: tag.id), class: "text-dark" %>
+                  <span class="mr-1"><%= link_to tag.name, tag_posts_path(tag_id: tag.id), class: "text-dark" %></span>
                 <% end %>
               </span>
             </p>

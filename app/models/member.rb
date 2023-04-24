@@ -30,9 +30,9 @@ class Member < ApplicationRecord
 
   # ゲストログイン登録情報
   def self.guest
-    find_or_create_by!(name: 'guestmember' ,email: 'guest@example.com') do |member|
+    find_or_create_by!(name: 'ゲスト' ,email: 'guestmember@example.com') do |member|
       member.password = SecureRandom.urlsafe_base64
-      member.name = "guestmember"
+      member.name = "ゲスト"
     end
   end
 

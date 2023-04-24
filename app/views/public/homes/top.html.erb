@@ -7,7 +7,18 @@
   <div class="row">
     <div class="col-4 pt-4">
       <% if member_signed_in? %>
-        <%= render 'my_profile' %>
+        <% if current_member.name == "ゲスト" %>
+          <div class="border border-success rounded p-3">
+            <p class="text-center pt-3">ゲストログイン中</p>
+            <p class="text-center"><%= image_tag current_member.get_profile_image, class: "rounded-circle", size:"80x80"%></p>
+            <p class="text-center">
+              全ての機能をご利用するには</br>
+              新規登録、またはログインが必要です。
+            </p>
+          </div>
+        <% else %>
+          <%= render 'my_profile' %>
+        <% end %>
       <% else %>
         <%= render 'login_area' %>
       <% end %>
@@ -46,7 +57,14 @@
             <div class="card-body", style="background-color: #f5f5f5;">
               <div id="post_<%= post.id %>">
                 <h5 class=""><%= link_to post.title, post_path(post.id), class: "text-dark" %></h5>
-                <div class="card-text small"><i class="fas fa-folder"></i>&nbsp;<%= post.genre_i18n %></div>
+                <div class="card-text small">ジャンル：<%= post.genre_i18n %>
+                  <span class="pl-5">
+                    <i class="fas fa-tag"></i>
+                    <% post.tags.each do |tag| %>
+                      <span class="mr-1"><%= link_to tag.name, tag_posts_path(tag_id: tag.id), class: "text-dark" %></span>
+                    <% end %>
+                  </span>
+                </div>
                 <div class="card-text small pt-2">
                   <%= image_tag post.member.get_profile_image, size:"30x30" %>
                   <%= link_to post.member.name, member_path(post.member_id), class: "text-dark" %>
