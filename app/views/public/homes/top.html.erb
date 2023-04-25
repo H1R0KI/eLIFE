@@ -1,24 +1,29 @@
-<div class="text-center py-3 mb-5", style="background-color: #DDFFDD;">
-  <p class="h1 font-weight-lighter font-italic display-2">Let's enjoy life!</p>
-  <p class="text-secondary">eLIFEは、生活の中でのライフハックや便利アイテムを共有するためのサービスです。</p>
+<div class="text-center mb-5">
+  <div style="position: relative; display:inline-block;">
+    <%= image_tag 'top_life.jpeg', class: "top_image" %>
+    <div style="position: absolute; top: 120px; left: 460px; max-width: 100%; max-height: 100%; text-align: left;">
+      <p class="text-center p-3", style="background-color: #F8EED1;">
+        <span class="font-weight-lighter font-italic display-2 mb-3">Let's enjoy life!</span></br>
+        <span class="small">eLIFEは、生活の中でのライフハックや便利アイテムを共有するためのサービスです</span>
+      </p>
+    </div>
+  </div>
 </div>
 
 <div class="container pt-2 pb-3 px-sm-0">
   <div class="row">
     <div class="col-4 pt-4">
-      <% if member_signed_in? %>
-        <% if current_member.name == "ゲスト" %>
-          <div class="border border-success rounded p-3">
+      <% if member_signed_in? && current_member.name != "ゲスト" %>
+        <%= render 'my_profile' %>
+      <% elsif member_signed_in? && current_member.name == "ゲスト" %>
+        <div class="border border-success rounded p-3">
             <p class="text-center pt-3">ゲストログイン中</p>
             <p class="text-center"><%= image_tag current_member.get_profile_image, class: "rounded-circle", size:"80x80"%></p>
             <p class="text-center">
               全ての機能をご利用するには</br>
               新規登録、またはログインが必要です。
             </p>
-          </div>
-        <% else %>
-          <%= render 'my_profile' %>
-        <% end %>
+        </div>
       <% else %>
         <%= render 'login_area' %>
       <% end %>
