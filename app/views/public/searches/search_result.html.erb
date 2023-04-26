@@ -5,7 +5,7 @@
         <div class="pt-4 pl-5 ml-3">
           <h5 class="font-weight-bold pt-4 ml-3"><i class="fas fa-tag"></i>&nbsp;タグ一覧</h5>
           <% @tags.each do |tag| %>
-            <li class="ml-4 mb-1"><%= link_to tag.name, tag_posts_path(tag.id) %> (<%= tag.posts.count %>)</li>
+            <li class="ml-4 mb-1"><%= link_to tag.name, tag_posts_path(tag.id), class: "text-dark" %> (<%= tag.posts.count %>)</li>
           <% end %>
         </div>
       </div>
