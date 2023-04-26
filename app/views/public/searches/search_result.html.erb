@@ -17,7 +17,7 @@
     <% elsif @model == 'member' %>
       <div class="col-1"></div>
       <div class="col-10 pt-5">
-        <div class="h4 text-center pb-2 mb-4"><i class="fas fa-search"></i>&nbsp;キーワード"<strong><%= @content %></strong>"<span class="h5">のユーザー検索結果 全<%= @members.count %>件</div>
+        <div class="h4 text-center pb-2 mb-4"><i class="fas fa-search"></i>&nbsp;キーワード"<strong><%= @content %></strong>"<span class="h5">のユーザー検索結果</div>
         <%= render 'public/members/member_list', member: @members %>
       </div>
       <div class="col-1"></div>
