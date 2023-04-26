@@ -11,7 +11,7 @@
     <!--条件：ログイン済み、投稿者が自分、ゲストユーザー-->
     <% elsif member_signed_in? && @post.member_id == current_member.id && current_member.name == "ゲスト" %>
     <!--条件：ログイン済み、投稿者が自分以外-->
-    <% elsif member_signed_in? %>
+    <% elsif member_signed_in? && @post.member.name != "ゲスト" %>
       <%= render 'public/follows/follow_btn', member: @post.member %>
     <!--条件：上記以外-->
     <% else %>

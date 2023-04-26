@@ -1,8 +1,11 @@
+<div class="h5 text-center pt-3"><%= flash[:notice] %></div>
+
 <div class="text-center">
   <%= render 'public/searches/rakuten_search' %>
 </div>
 <div class="container">
-  <div class="row py-5">
+<div class="pt-5">検索結果：最大30件まで表示中</div>
+  <div class="row pb-3">
     <% if @items.present? %>
       <% @items.each do |item| %>
         <div class="card-deck mb-3">

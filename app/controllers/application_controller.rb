@@ -9,10 +9,10 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if current_member
-      flash[:notice] = "ログインしました"
+      posts_path
+    elsif guestmember
       posts_path
     else
-      flash[:notice] = "新規登録しました。"
       posts_path
     end
   end

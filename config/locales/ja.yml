@@ -1,28 +1,39 @@
   ja:
+    errors:
+      messages:
+        not_saved: "登録内容に誤りがあります"
     activerecord:
       errors:
         models:
           member:
             attributes:
               email:
-                blank: "ハンドルネームを入力してください"
+                blank: "メールアドレスを入力してください"
               name:
                 blank: "ハンドルネームを入力してください"
-              too_short: "ハンドルネームが短すぎます"
+                too_short: "ハンドルネームが短すぎます"
               password:
                 blank: "パスワードを入力してください"
+          post:
+            attributes:
+              title:
+                blank: "タイトルを入力してください"
+              body:
+                blank: "本文を入力してください"
+              tags:
+                blank: "タグを1つ以上入力してください"
     devise:
       sessions:
         member:
-          signed_in: "ログインしました。"
-          signed_up: "会員登録が完了しました。"
-          signed_out: "ログアウトしました。"
+          signed_in: "通知：ログインしました。"
+          signed_up: "通知：会員登録が完了しました。"
+          signed_out: "通知：ログアウトしました。"
         admin:
-          signed_in: "管理者ページにログインしました。"
-          signed_out: "管理者ページをログアウトしました。"
+          signed_in: "通知：管理者ページにログインしました。"
+          signed_out: "通知：管理者ページをログアウトしました。"
       registrations:
         member:
-          signed_up: "会員登録が完了しました。"
+          signed_up: "通知：会員登録が完了しました。"
     enums:
       member:
         age:

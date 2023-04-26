@@ -9,6 +9,10 @@ Rails.application.routes.draw do
 
     #メンバー
     resources :members,only: [:index,:edit,:show,:update]
+
+    #投稿
+    resources :posts, only: [:destroy]
+
   end
 
 

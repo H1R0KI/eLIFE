@@ -1,11 +1,11 @@
-<%= flash[:notice] %>
+<div class="h5 text-center mt-2"><%= flash[:notice] %></div>
 
 <div class="container">
-  <div class="row py-3">
+  <div class="row py-5">
     <div class="col-3"></div>
 
     <div class="col-6">
-      <div class="border-bottom">
+      <div class="border-bottom mb-3">
         <h4 class="font-weight-bold">管理者ログイン</h4>
       </div>
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -21,7 +21,7 @@
           </tr>
 
           <tr>
-            <td class="text-right pt-4 btn-lg"><%= f.submit "ログイン" %></td>
+            <td class="text-right pt-4 pb-2 btn-lg"><%= f.submit "ログイン", class: "px-2 btn-success rounded" %></td>
           </tr>
         </table>
       <% end %>

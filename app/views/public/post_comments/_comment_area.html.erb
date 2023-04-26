@@ -18,7 +18,7 @@
     </div>
   </div>
 <% end %>
-<% if member_signed_in? %>
+<% if member_signed_in? && current_member.name != "ゲスト" %>
   <div class="pt-3">
     <%= form_with model: [@post, @post_comment], local: false do |f| %>
       <div><%= f.text_area :comment, rows: '3', style: "width:100%;" , placeholder: "ここにコメントを入力" %></div>

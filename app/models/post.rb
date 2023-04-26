@@ -8,6 +8,10 @@ class Post < ApplicationRecord
 
   has_many_attached :image
 
+  validates :title, presence:true
+  validates :body, presence:true
+  validates :tags, presence:true
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no.jpeg')
@@ -15,7 +19,6 @@ class Post < ApplicationRecord
     end
     image
   end
-
 
   #投稿のタグ付け機能
   def save_tag(sent_tags)

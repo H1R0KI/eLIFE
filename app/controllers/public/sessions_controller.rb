@@ -24,7 +24,7 @@ class Public::SessionsController < Devise::SessionsController
     @member = Member.find_by(email: params[:member][:email])
     return if !@member
     if @member.valid_password?(params[:member][:password]) && @member.is_deleted == true
-      flash[:notice] = "このアカウントは退会済み、または使用停止中です。"
+      flash[:notice] = "通知：このアカウントは退会済み、または使用停止中です。"
       redirect_to new_member_session_path
     end
   end

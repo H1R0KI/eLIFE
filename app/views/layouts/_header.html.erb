@@ -5,9 +5,12 @@
     </div>
     <div class="d-flex flex-column">
       <ul class="navbar-nav mb-2">
-        <li class="h5 text-nowrap pr-3 pt-2 mt-1 mr-5">
-          <%= render 'layouts/search' %>
-        </li>
+        <% if admin_signed_in? %>
+        <% else %>
+          <li class="h5 text-nowrap pr-3 pt-2 mt-1 mr-5">
+            <%= render 'layouts/search' %>
+          </li>
+        <% end %>
         <% if member_signed_in? %>
           <div class="dropdown">
             <li class="btn mr-3 mt-2 dropdown-toggle text-light", data-toggle="dropdown">
@@ -15,7 +18,10 @@
               <span class="h5"><%= current_member.name %></span>
             </li>
             <div class="dropdown-menu" aria-labelledby="dropdown1">
-              <div class="dropdown-item"><%= link_to "マイページ", member_path(current_member.id), class: "text-dark" %></div>
+              <% if current_member.name != "ゲスト" %>
+                <div class="dropdown-item"><%= link_to "マイページ", member_path(current_member.id), class: "text-dark" %></div>
+              <% else %>
+              <% end %>
               <div class="dropdown-item"><%= link_to "ログアウト", destroy_member_session_path, class: "text-dark",method: :delete %></div>
             </div>
           </div>
@@ -24,7 +30,7 @@
             <%= link_to "登録会員一覧", admin_members_path, class: "text-light text-decoration-none" %>
           </li>
           <li class="nav-link h5 text-nowrap pr-3">
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "text-light text-decoration-none" %>
+            <%= link_to "管理者ログアウト", destroy_admin_session_path, method: :delete, class: "text-light text-decoration-none" %>
           </li>
         <% else %>
           <li class="nav-link h5 text-nowrap pr-3 pt-3">
@@ -35,24 +41,27 @@
           </li>
         <% end %>
       </ul>
-      <div class="d-flex flex-column">
-        <ul class="navbar-nav justify-content-end active">
-          <li class="nav-link h5 text-nowrap pr-5">
-            <%= link_to "HOME", root_path, class: "text-light text-decoration-none" %>
-          </li>
-          <% if member_signed_in? %>
-          <li class="nav-link h5 text-nowrap pr-5">
-            <%= link_to "新規投稿", new_post_path, class: "text-light text-decoration-none" %>
-          </li>
-          <% end %>
-          <li class="nav-link h5 text-nowrap pr-5">
-            <%= link_to "投稿一覧", posts_path, class: "text-light text-decoration-none" %>
+      <% if admin_signed_in? %>
+      <% else %>
+        <div class="d-flex flex-column">
+          <ul class="navbar-nav justify-content-end active">
+            <li class="nav-link h5 text-nowrap pr-5">
+              <%= link_to "HOME", root_path, class: "text-light text-decoration-none" %>
             </li>
-          <li class="nav-link h5 text-nowrap pr-3">
-            <%= link_to "ユーザー", members_path, class: "text-light text-decoration-none" %>
-          </li>
-        </ul>
-      </div>
+            <% if member_signed_in? %>
+            <li class="nav-link h5 text-nowrap pr-5">
+              <%= link_to "新規投稿", new_post_path, class: "text-light text-decoration-none" %>
+            </li>
+            <% end %>
+            <li class="nav-link h5 text-nowrap pr-5">
+              <%= link_to "投稿一覧", posts_path, class: "text-light text-decoration-none" %>
+              </li>
+            <li class="nav-link h5 text-nowrap pr-3">
+              <%= link_to "ユーザー", members_path, class: "text-light text-decoration-none" %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
     </div>
   </div>
 </nav>

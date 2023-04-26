@@ -1,7 +1,7 @@
-<%= flash[:notice] %>
+<div class="h5 text-center pt-3"><%= flash[:notice] %></div>
 
 <div class="container">
-  <div class="row py-3">
+  <div class="row pt-3 pb-5">
 
     <div class="col-4 pt-4">
       <% if member_signed_in? %>
@@ -35,7 +35,7 @@
 
     <div class="col-7 pt-4", id="post_<%= @post.id %>">
       <p class="h2 font-weight-bold"><%= @post.title %></p>
-      <i class="fas fa-folder"></i>&nbsp;<%= @post.genre_i18n %>
+      ジャンル：<%= @post.genre_i18n %>
       <span class="pl-5">
         <i class="fas fa-tag"></i>
         <% @post_tags.each do |tag| %>
@@ -55,21 +55,22 @@
           <% end %>
         <% end %>
       </div>
-      <% if member_signed_in? %>
-        <% if @post.member == current_member %>
-          <span>
-            <h5><i class="fas fa-thumbs-up text-warning"></i>&nbsp;<%= @post.favorites.count %></h5>
-          </span>
-          <div class="text-right">
-            <%= link_to "編集する", edit_post_path(@post.id), class: "btn btn-sm btn-success" %>
-            <%= link_to "削除", post_path(@post.id), method: :delete, class: "btn btn-sm btn-danger" %>
-          </div>
-        <% else %>
+      <% if member_signed_in? && @post.member == current_member %>
+        <span>
+          <h5><i class="fas fa-thumbs-up text-warning"></i>&nbsp;<%= @post.favorites.count %></h5>
+        </span>
+        <div class="text-right">
+          <%= link_to "編集する", edit_post_path(@post.id), class: "btn-sm btn-success text-decoration-none" %>
+          <%= link_to "削除", post_path(@post.id), method: :delete, class: "btn-sm btn-danger text-decoration-none", "data-confirm" => "本当に削除しますか？" %>
+        </div>
+      <% elsif member_signed_in? && current_member.name != "ゲスト" %>
           <div class="favorite_btn h5">
             <%= render 'public/favorites/favorite_btn', post: @post %>
           </div>
-        <% end %>
       <% else %>
+        <span>
+          <h5><i class="fas fa-thumbs-up text-warning"></i>&nbsp;<%= @post.favorites.count %></h5>
+        </span>
       <% end %>
       <div class="comment_area">
         <%= render 'public/post_comments/comment_area', post: @post %>

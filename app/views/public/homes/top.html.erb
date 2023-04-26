@@ -10,12 +10,14 @@
   </div>
 </div>
 
-<div class="container pt-2 pb-3 px-sm-0">
+<div class="h5 text-center pt-1"><%= flash[:notice] %></div>
+
+<div class="container pt-5 pb-3 px-sm-0">
   <div class="row">
     <div class="col-4 pt-4">
       <%= render 'my_profile' %>
       <div class="pt-2 mt-5">
-        <div class="text-center h5 border-bottom border-dark pb-2 mb-4">
+        <div class="text-center h5 border-bottom border-dark pb-2 mb-3">
           <strong>月間投稿数ランキングTOP5</strong>
         </div>
         <% @month_member_post_ranks.each.with_index(1) do |member, i| %>
@@ -61,19 +63,27 @@
                   <%= image_tag post.member.get_profile_image, size:"30x30" %>
                   <%= link_to post.member.name, member_path(post.member_id), class: "text-dark" %>
                   <small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></small>
-                  <% if post.member == current_member %>
-                    &nbsp;&nbsp;<%= link_to "削除", post_path(post.id), class: "text-danger text-right", method: :delete %>
-                  <% end %>
                   <div class="text-right ">
-                  <% if member_signed_in? %>
-                    <span class="favorite_btn">
+                  <% if member_signed_in? && post.member == current_member %>
+                    &emsp;<%= link_to "削除", post_path(post.id), class: "text-danger text-right", method: :delete, "data-confirm" => "本当に削除しますか？" %>
+                    <div class="text-right">
+                      <span class="text-warning h5">
+                        <i class="fas fa-thumbs-up"></i>
+                      </span>
+                      <%= post.favorites.count %>
+                      &emsp;<i class="fas fa-comment text-primary"></i> <%= post.post_comments.count %>
+                    </div>
+                  <% elsif member_signed_in? && current_member.name != "ゲスト" %>
+                    <div class="text-right">
+                      <span class="favorite_btn">
                       <%= render 'public/favorites/favorite_btn', post: post %>
-                    </span>
-                    &emsp;<i class="fas fa-comment text-primary"></i> <%= post.post_comments.count %>
+                      </span>
+                      &emsp;<i class="fas fa-comment text-primary"></i> <%= post.post_comments.count %>
+                    </div>
                   <% else %>
-                    <div class="text-right ">
-                      <span class="text-warning">
-                        <i class="fas fa-star"></i>
+                    <div class="text-right">
+                      <span class="text-warning h5">
+                        <i class="fas fa-thumbs-up"></i>
                       </span>
                       <%= post.favorites.count %>
                       &emsp;<i class="fas fa-comment text-primary"></i> <%= post.post_comments.count %>

@@ -9,7 +9,7 @@
         <%= link_to member.name, member_path(member.id), class: "text-dark" %>
       </td>
       <td class="text-center align-middle follow_btn", style="width: 20%">
-      <% if member_signed_in? %>
+      <% if member_signed_in? && current_member.name != "ゲスト" %>
         <% if member != current_member %> <!--自分以外のユーザーにはフォローボタンを表示-->
           <%= render 'public/follows/follow_btn', member: member %>
         <% else %> <!--自分にはマイページへのリンクを表示-->

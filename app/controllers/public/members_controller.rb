@@ -2,6 +2,7 @@ class Public::MembersController < ApplicationController
 
   before_action :authenticate_member!, only: [:edit, :update]
   before_action :set_member, only: [:favorites]
+  before_action :ensure_guest_member, only: [:edit, :show]
 
   def index
     @members = Member.all.page(params[:page]).per(10)
@@ -46,7 +47,7 @@ class Public::MembersController < ApplicationController
     @member = current_member
     @member.update(is_deleted: true)
     reset_session
-    flash[:notice] = "退会処理が完了しました。ご利用ありがとうございました。"
+    flash[:notice] = "通知：退会処理が完了しました。ご利用ありがとうございました。"
     redirect_to root_path
   end
 
@@ -61,8 +62,8 @@ class Public::MembersController < ApplicationController
 
   def ensure_guest_member
     @member = Member.find(params[:id])
-    if @member.name == "guestmember"
-      redirect_to member_path(current_member), notice: "ゲストはプロフィール編集画面へ遷移できません。"
+    if @member.name == "ゲスト"
+      redirect_to posts_path, notice: "通知：ゲストのユーザー詳細ページには遷移できません。"
     end
   end
 

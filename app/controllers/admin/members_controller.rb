@@ -8,6 +8,7 @@ class Admin::MembersController < ApplicationController
 
   def show
     @member = Member.find(params[:id])
+    @posts = @member.posts
   end
 
   def edit
@@ -17,7 +18,7 @@ class Admin::MembersController < ApplicationController
   def update
     @member = Member.find(params[:id])
     if @member.update(member_params)
-      flash[:notice] = "会員情報の編集が完了しました。"
+      flash[:notice] = "通知：会員情報の編集が完了しました。"
       redirect_to admin_member_path(@member.id)
     else
       render :edit
