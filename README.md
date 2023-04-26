@@ -14,13 +14,13 @@
 そういった疑問や悩みを解決したい、同じような境遇の方や仕事が忙しくて家事にまで手が回らない方などの一助となればと思いサイトの製作に着手しました。
 
 ### ターゲットユーザー
-・これから新生活を迎える方<br>
-・初めて一人暮らしをする方<br>
-・日常生活を豊かにしたい方
+- これから新生活を迎える方
+- 初めて一人暮らしをする方
+- 日常生活を豊かにしたい方
 
 ### 主な利用シーン
-・生活や家事の中での工夫が欲しい、それらを共有したい時<br>
-・生活の中であると便利なモノが知りたい、共有したい時<br>
+- 生活や家事の中での工夫が欲しい、それらを共有したい時
+- 生活の中であると便利なモノが知りたい、共有したい時
 
 ## 設計書
 
@@ -30,9 +30,6 @@ ER図<br>
 テーブル定義書<br>
 https://docs.google.com/spreadsheets/d/1VfGacB8YgY1n2w1krmQK4nCr-_JHJxKLAw7_YX8bljQ/edit#gid=856357510
 
-画面遷移図<br>
-![eLIFE_画面遷移図](https://user-images.githubusercontent.com/122168203/229492277-0e4b0b79-0b65-4575-b3d5-56d44e79f108.png)
-
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
@@ -40,7 +37,19 @@ https://docs.google.com/spreadsheets/d/1VfGacB8YgY1n2w1krmQK4nCr-_JHJxKLAw7_YX8b
 - JSライブラリ：jQuery
 - IDE：Cloud9
 
+## 機能
+### ユーザー側
+- ユーザー登録、ログイン機能
+- フォロー機能
+- 新規投稿(画像複数投稿)、編集機能
+- 投稿いいね機能
+- 投稿コメント機能
+- 商品検索機能(楽天API使用)
+
+### 管理者側
+- ユーザー停止機能
+- 投稿削除機能
+
 ## 使用素材
 - ロゴ作成 DesignEvo様(https://www.designevo.com/jp/)
 - サイト内素材 いらすとや様(https://www.irasutoya.com/)
-- 楽天APIにて商品情報を取得予定
