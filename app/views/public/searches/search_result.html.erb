@@ -10,7 +10,7 @@
         </div>
       </div>
       <div class="col-9">
-        <div class="h4 text-center border-bottom pb-2 mb-4"><i class="fas fa-search"></i>&nbsp;キーワード"<strong><%= @content %></strong>"<span class="h5">の投稿検索結果 全<%= @posts.count %>件</span></div>
+        <div class="h4 text-center border-bottom pb-2 mb-4"><i class="fas fa-search"></i>&nbsp;キーワード"<strong><%= @content %></strong>"<span class="h5">の投稿検索結果</span></div>
         <%= render 'public/posts/post_list', post: @posts %>
       </div>
 
