@@ -13,20 +13,7 @@
 <div class="container pt-2 pb-3 px-sm-0">
   <div class="row">
     <div class="col-4 pt-4">
-      <% if member_signed_in? && current_member.name != "ゲスト" %>
-        <%= render 'my_profile' %>
-      <% elsif member_signed_in? && current_member.name == "ゲスト" %>
-        <div class="border border-success rounded p-3">
-            <p class="text-center pt-3">ゲストログイン中</p>
-            <p class="text-center"><%= image_tag current_member.get_profile_image, class: "rounded-circle", size:"80x80"%></p>
-            <p class="text-center">
-              全ての機能をご利用するには</br>
-              新規登録、またはログインが必要です。
-            </p>
-        </div>
-      <% else %>
-        <%= render 'login_area' %>
-      <% end %>
+      <%= render 'my_profile' %>
       <div class="pt-2 mt-5">
         <div class="text-center h5 border-bottom border-dark pb-2 mb-4">
           <strong>月間投稿数ランキングTOP5</strong>
@@ -51,17 +38,17 @@
     <div class="col-1"></div>
 
     <div class="col-7">
-      <div class="text-center h4 border-bottom border-dark pb-2 mb-5">
+      <div class="text-center h4 border-bottom border-dark pb-2 mb-4">
         <strong>週間イイね<i class="far fa-thumbs-up"></i>数ランキングTOP5</strong>
       </div>
       <% @week_post_favorite_ranks.each.with_index(1) do |post, i| %>
         <span class="h4 pr-5">第<%= i %>位</span>週間カウント：
         <strong><%= post.favorites.where(created_at: Time.current.all_week).count %></strong>イイね！
-        <div class="card-deck mt-2 mb-5">
+        <div class="card-deck mb-4">
           <div class="card">
             <div class="card-body", style="background-color: #f5f5f5;">
               <div id="post_<%= post.id %>">
-                <h5 class=""><%= link_to post.title, post_path(post.id), class: "text-dark" %></h5>
+                <h5 class="mb-3"><%= link_to post.title, post_path(post.id), class: "text-dark" %></h5>
                 <div class="card-text small">ジャンル：<%= post.genre_i18n %>
                   <span class="pl-5">
                     <i class="fas fa-tag"></i>
@@ -70,7 +57,7 @@
                     <% end %>
                   </span>
                 </div>
-                <div class="card-text small pt-2">
+                <div class="card-text small pt-3">
                   <%= image_tag post.member.get_profile_image, size:"30x30" %>
                   <%= link_to post.member.name, member_path(post.member_id), class: "text-dark" %>
                   <small class="text-muted"><%= post.created_at.strftime('%Y/%m/%d %H:%M') %></small>

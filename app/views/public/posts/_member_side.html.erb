@@ -3,42 +3,47 @@
   <p class="text-center pt-3"><%= image_tag @post.member.get_profile_image, class: "rounded-circle", size:"80x80"%></p>
   <p class="text-center"><%= link_to @post.member.name, member_path(@post.member_id), class: "text-dark" %></p>
   <p class="text-center follow_btn">
-    <% if member_signed_in? %>
-      <% if @post.member_id == current_member.id %>
-        <%= link_to edit_member_path(@post.member.id), class: "btn btn-sm btn-secondary rounded-pill" do %>
-          <i class="fas fa-user-cog"></i> 編集する
-        <% end %>
-      <% else %>
-        <%= render 'public/follows/follow_btn', member: @post.member %>
+    <!--条件：ログイン済み、投稿者が自分、ゲストユーザーではない-->
+    <% if member_signed_in? && @post.member_id == current_member.id && current_member.name != "ゲスト" %>
+      <%= link_to edit_member_path(@post.member.id), class: "btn btn-sm btn-secondary rounded-pill" do %>
+        <i class="fas fa-user-cog"></i> 編集する
       <% end %>
+    <!--条件：ログイン済み、投稿者が自分、ゲストユーザー-->
+    <% elsif member_signed_in? && @post.member_id == current_member.id && current_member.name == "ゲスト" %>
+    <!--条件：ログイン済み、投稿者が自分以外-->
+    <% elsif member_signed_in? %>
+      <%= render 'public/follows/follow_btn', member: @post.member %>
+    <!--条件：上記以外-->
     <% else %>
     <% end %>
   </p>
-  
-  <% if @post.member.name
-  <table class="table">
-    <tr>
-      <th>投稿数</th>
-      <td><%= link_to @post.member.posts.count, member_path(@post.member), class: "text-dark" %></td>
-    </tr>
-    <tr>
-      <th style="width: 45%">フォロー数</th>
-      <td><%= link_to @post.member.followings.count, member_followings_path(@post.member), class: "text-dark" %></td>
-    </tr>
-    <tr>
-      <th>フォロワー数</th>
-      <td><%= link_to @post.member.followers.count, member_followers_path(@post.member), class: "text-dark" %></td>
-    </tr>
-    <tr>
-      <th>年代</th>
-      <td><%= @post.member.age_i18n %></td>
-    </tr>
-    <tr>
-      <th>世帯構成</th>
-      <td><%= @post.member.composition_i18n %></td>
-    </tr>
-    <p>
-      <%= @post.member.introduction %>
-    </p>
-  </table>
+
+  <% if @post.member.name != "ゲスト" %>
+    <table class="table">
+      <tr>
+        <th>投稿数</th>
+        <td><%= link_to @post.member.posts.count, member_path(@post.member), class: "text-dark" %></td>
+      </tr>
+      <tr>
+        <th style="width: 45%">フォロー数</th>
+        <td><%= link_to @post.member.followings.count, member_followings_path(@post.member), class: "text-dark" %></td>
+      </tr>
+      <tr>
+        <th>フォロワー数</th>
+        <td><%= link_to @post.member.followers.count, member_followers_path(@post.member), class: "text-dark" %></td>
+      </tr>
+      <tr>
+        <th>年代</th>
+        <td><%= @post.member.age_i18n %></td>
+      </tr>
+      <tr>
+        <th>世帯構成</th>
+        <td><%= @post.member.composition_i18n %></td>
+      </tr>
+      <p>
+        <%= @post.member.introduction %>
+      </p>
+    </table>
+  <% else %>
+  <% end %>
 </div>

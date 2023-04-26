@@ -1,6 +1,6 @@
 <table class="table table-hover">
 <% @members.each do |member| %>
-  <% if member.name == "guestmember" %> <!--ゲストユーザーを一覧に表示しない為の分岐-->
+  <% if member.name == "ゲスト" %> <!--ゲストユーザーを一覧に表示しない為の分岐-->
 
   <% elsif member.is_deleted == false %> <!--退会ユーザーを一覧に表示しない為の分岐-->
     <tr id="member_<%= member.id %>">
@@ -10,7 +10,7 @@
       </td>
       <td class="text-center align-middle follow_btn", style="width: 20%">
       <% if member_signed_in? %>
-        <% if current_member != member %> <!--自分以外のユーザーにはフォローボタンを表示-->
+        <% if member != current_member %> <!--自分以外のユーザーにはフォローボタンを表示-->
           <%= render 'public/follows/follow_btn', member: member %>
         <% else %> <!--自分にはマイページへのリンクを表示-->
           <%= link_to member_path(current_member), class: "font-weight-bold btn btn-sm btn-secondary rounded-pill" do %>

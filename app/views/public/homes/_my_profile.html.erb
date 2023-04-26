@@ -1,34 +1,47 @@
-<div class="border rounded p-3">
-  <p class="text-center pt-3"><%= image_tag current_member.get_profile_image, class: "rounded-circle", size:"80x80"%></p>
-  <p class="text-center"><%= link_to current_member.name, member_path(current_member.id), class: "text-dark" %></p>
-  <div class="text-center pb-3">
-    <%= link_to edit_member_path(current_member.id), class: "btn btn-sm btn-secondary rounded-pill" do %>
-      <i class="fas fa-user-cog"></i> 編集する
-    <% end %>
+<% if member_signed_in? && current_member.name != "ゲスト" %>
+  <div class="border rounded p-3">
+    <p class="text-center pt-3"><%= image_tag current_member.get_profile_image, class: "rounded-circle", size:"80x80"%></p>
+    <p class="text-center"><%= link_to current_member.name, member_path(current_member.id), class: "text-dark" %></p>
+    <div class="text-center pb-3">
+      <%= link_to edit_member_path(current_member.id), class: "btn btn-sm btn-secondary rounded-pill" do %>
+        <i class="fas fa-user-cog"></i> 編集する
+      <% end %>
+    </div>
+    <table class="table">
+      <tr>
+        <th>投稿数</th>
+        <td><%= link_to current_member.posts.count, member_path(current_member), class: "text-dark" %></td>
+      </tr>
+      <tr>
+        <th style="width: 45%">フォロー数</th>
+        <td><%= link_to current_member.followings.count, member_followings_path(current_member), class: "text-dark" %></td>
+      </tr>
+      <tr>
+        <th>フォロワー数</th>
+        <td><%= link_to current_member.followers.count, member_followers_path(current_member), class: "text-dark" %></td>
+      </tr>
+      <tr>
+        <th>年代</th>
+        <td><%= current_member.age_i18n %></td>
+      </tr>
+      <tr>
+        <th>世帯構成</th>
+        <td><%= current_member.composition_i18n %></td>
+      </tr>
+      <p>
+        <%= current_member.introduction %>
+      </p>
+    </table>
   </div>
-  <table class="table">
-    <tr>
-      <th>投稿数</th>
-      <td><%= link_to current_member.posts.count, member_path(current_member), class: "text-dark" %></td>
-    </tr>
-    <tr>
-      <th style="width: 45%">フォロー数</th>
-      <td><%= link_to current_member.followings.count, member_followings_path(current_member), class: "text-dark" %></td>
-    </tr>
-    <tr>
-      <th>フォロワー数</th>
-      <td><%= link_to current_member.followers.count, member_followers_path(current_member), class: "text-dark" %></td>
-    </tr>
-    <tr>
-      <th>年代</th>
-      <td><%= current_member.age_i18n %></td>
-    </tr>
-    <tr>
-      <th>世帯構成</th>
-      <td><%= current_member.composition_i18n %></td>
-    </tr>
-    <p>
-      <%= current_member.introduction %>
-    </p>
-  </table>
-</div>
+<% elsif member_signed_in? && current_member.name == "ゲスト" %>
+  <div class="border border-success rounded p-3">
+      <p class="text-center pt-3">ゲストログイン中</p>
+      <p class="text-center"><%= image_tag current_member.get_profile_image, class: "rounded-circle", size:"80x80"%></p>
+      <p class="text-center">
+        全ての機能をご利用するには</br>
+        新規登録、またはログインが必要です。
+      </p>
+  </div>
+<% else %>
+  <%= render 'login_area' %>
+<% end %>

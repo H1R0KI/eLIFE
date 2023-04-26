@@ -3,14 +3,16 @@
 <div class="container py-4 px-sm-0">
   <div class="row">
     <div class="col-3">
-      <div class="h4 mt-2">タグ一覧</div>
-      <% @tags.each do |tag| %>
-        <li><%= link_to tag.name, tag_posts_path(tag.id) %> (<%= tag.posts.count %>)</li>
-      <% end %>
+      <div class="pt-4 pl-4">
+        <h5 class="font-weight-bold pt-4 ml-3"><i class="fas fa-tag"></i>&nbsp;タグ一覧</h5>
+        <% @tags.each do |tag| %>
+          <li class="ml-4 mb-1"><%= link_to tag.name, tag_posts_path(tag.id) %> (<%= tag.posts.count %>)</li>
+        <% end %>
+      </div>
     </div>
 
     <div class="col-9">
-      <div class="h4 text-center border-bottom pb-2 mb-4"><i class="fas fa-tag"></i>&nbsp;<%= @tag.name %><span class="h5">に関連する投稿 全<%= @posts.count %>件</span></div>
+      <div class="h4 text-center border-bottom pb-2 mb-4"><i class="fas fa-search"></i>&nbsp;タグ"<strong><%= @tag.name %></strong>"<span class="h5">に関連する投稿 全<%= @posts.count %>件</span></div>
       <%= render 'post_list', post: @posts %>
     </div>
   </div>
