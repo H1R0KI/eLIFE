@@ -2,7 +2,7 @@
   <% if post.member.is_deleted == false %>
     <div class="card-deck mb-3">
       <div class="card">
-        <div class="card-body", style="background-color: #f5f5f5;">
+        <div class="card-body rounded bg-white">
           <div id="post_<%= post.id %>">
             <h5 class="mb-3"><%= link_to post.title, post_path(post.id), class: "text-dark" %></h5>
             <p class="card-text small">ジャンル：<%= post.genre_i18n %>

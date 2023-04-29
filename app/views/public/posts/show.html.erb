@@ -6,7 +6,7 @@
     <div class="col-4 pt-4">
       <% if member_signed_in? %>
       <% else %>
-        <div class="border border-success rounded p-4">
+        <div class="border border-success rounded bg-white p-4">
           <div class="text-center pb-2">
             こちらからお試しでご利用できます。
           </div>
@@ -23,7 +23,7 @@
           </div>
         </div>
       <% end %>
-      <div class="border border rounded p-4 my-3", style="border-color: #6c757d;">
+      <div class="border border rounded bg-white p-4 my-3", style="border-color: #6c757d;">
         <%= render 'member_side' %>
       </div>
       <div class="pt-5">
@@ -33,7 +33,7 @@
 
     <div class="col-1"></div>
 
-    <div class="col-7 pt-4", id="post_<%= @post.id %>">
+    <div class="col-7 pt-4 bg-white", id="post_<%= @post.id %>">
       <p class="h2 font-weight-bold"><%= @post.title %></p>
       ジャンル：<%= @post.genre_i18n %>
       <span class="pl-5">

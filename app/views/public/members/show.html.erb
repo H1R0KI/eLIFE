@@ -8,7 +8,7 @@
     <% end %>
   </h4>
   <div class="row">
-    <div class="col-4 pt-4">
+    <div class="col-4 pt-4 bg-white">
       <%= render 'member_side', member: @member %>
     </div>
 
@@ -21,7 +21,7 @@
           <% @posts.each do |post| %>
             <div class="card-deck mb-3">
               <div class="card">
-                <div class="card-body", style="background-color: #f5f5f5;">
+                <div class="card-body rounded bg-white">
                   <div id="post_<%= post.id %>">
                     <h5 class="my-2"><%= link_to post.title, post_path(post.id), class: "text-dark" %></h5>
                     <p class="card-text">

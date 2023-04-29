@@ -11,7 +11,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-   <body>
+  <body>
     <header>
       <%= render 'layouts/header' %>
     </header>
@@ -26,3 +26,17 @@
   </body>
 
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/bubbly-bg@1.0.0/dist/bubbly-bg.js"></script>
+<script>
+  bubbly({
+      colorStart: "#fff",
+      colorStop: "#fff",
+      blur: 2,
+      bubbles: 30,
+      compose: "source-over",
+      shadowColor: "#5DB09B",
+      radiusFunc: () => 10 + Math.random() * 30,
+      bubbleFunc:() => `hsla(${200 + Math.random() * 100}, 500%, 100%, .3)`,
+  });
+</script>

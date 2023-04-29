@@ -1,5 +1,5 @@
 <% if member_signed_in? && current_member.name != "ゲスト" %>
-  <div class="border rounded p-3">
+  <div class="border rounded p-3 bg-white">
     <p class="text-center pt-3"><%= image_tag current_member.get_profile_image, class: "rounded-circle", size:"80x80"%></p>
     <p class="text-center"><%= link_to current_member.name, member_path(current_member.id), class: "text-dark" %></p>
     <div class="text-center pb-3">

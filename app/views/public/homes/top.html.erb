@@ -1,24 +1,24 @@
 <div class="text-center mb-5">
-  <div class="text-center pt-3 pb-5", style="background-color: #F8EED1;">
-    <span class="font-weight-lighter font-italic display-2">Let's enjoy life!</span></br>
+  <div class="text-center pt-3 pb-5">
+    <span class="font-weight-lighter font-italic display-2 border-bottom border-dark">Let's enjoy life!</span></br>
     <span class="small">eLIFEは、生活の中でのライフハックや便利アイテムを共有するためのサービスです</span>
   </div>
   <%= image_tag asset_path('top.jpg'), class: "top_image" %>
 </div>
 
-<div class="h5 text-center pt-1"><%= flash[:notice] %></div>
+<div class="h5 text-center border-bottom py-1"><%= flash[:notice] %></div>
 
 <div class="container pt-5 pb-3 px-sm-0">
   <div class="row">
     <div class="col-4 pt-4">
       <%= render 'my_profile' %>
       <div class="pt-2 mt-5">
-        <div class="text-center h5 border-bottom border-dark pb-2 mb-3">
+        <div class="text-center h5 border border-dark py-2 mb-3 rounded bg-white">
           <strong>月間投稿数ランキングTOP5</strong>
         </div>
         <% @month_member_post_ranks.each.with_index(1) do |member, i| %>
-          <table class="table table-borderless">
-            <tr class="border-bottom">
+          <table class="table table-borderless bg-white">
+            <tr class="border">
               <td style="width: 45%">
                 <div class="text-center h5">第<%= i %>位</div>
                 <div class="text-center">投稿数：<strong><%= member.posts.where(created_at: Time.current.all_month).count %></strong>件</div>
@@ -36,7 +36,7 @@
     <div class="col-1"></div>
 
     <div class="col-7">
-      <div class="text-center h4 border-bottom border-dark pb-2 mb-4">
+      <div class="text-center h4 border border-dark py-2 mb-4 rounded bg-white">
         <strong>週間イイね<i class="far fa-thumbs-up"></i>数ランキングTOP5</strong>
       </div>
       <% @week_post_favorite_ranks.each.with_index(1) do |post, i| %>
@@ -44,7 +44,7 @@
         <strong><%= post.favorites.where(created_at: Time.current.all_week).count %></strong>イイね！
         <div class="card-deck mb-4">
           <div class="card">
-            <div class="card-body", style="background-color: #f5f5f5;">
+            <div class="card-body">
               <div id="post_<%= post.id %>">
                 <h5 class="mb-3"><%= link_to post.title, post_path(post.id), class: "text-dark" %></h5>
                 <div class="card-text small">ジャンル：<%= post.genre_i18n %>
