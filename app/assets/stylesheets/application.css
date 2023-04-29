@@ -3,6 +3,15 @@
     height: auto;
 }
 
+/*ページネーションデザイン関連*/
+.pagination>li>a {
+  color: #696969;
+}
+
+.pagination>.active>a {
+  background: #93c9ff;
+}
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
