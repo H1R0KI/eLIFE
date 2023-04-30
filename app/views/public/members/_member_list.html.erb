@@ -25,7 +25,7 @@
         フォロワー：<%= link_to member.followers.count, member_followers_path(member), class: "text-dark" %>
       </td>
       <td class="align-middle">
-        <% if member.introduction == nil %>
+        <% if member.introduction == nil or member.introduction == "" %>
           <span class="text-secondary small">自己紹介文がありません。</span>
         <% else %>
           <%= member.introduction %>
