@@ -4,23 +4,22 @@
     height: auto;
 }
 
-
 /*ヘッダー*/
 nav ul li a {
-	position: relative;
+  position: relative;
 }
 nav ul li a::before {
-	content: "";
-	width: 0;
-	height: 1px;
-	background: #fff;
-	display: block;
-	position: absolute;
-	top: calc(100% + 5px);
-	left: 50%;
-	-webkit-transform: translateX(-50%);
-	transform: translateX(-50%);
-	transition: .3s;
+  content: "";
+  width: 0;
+  height: 1px;
+  background: #fff;
+  display: block;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+  transition: .3s;
 }
 nav ul li a:hover::before {
 	width: 100%;
