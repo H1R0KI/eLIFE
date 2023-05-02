@@ -13,7 +13,6 @@ class Post < ApplicationRecord
 
   scope :latest, -> {order(created_at: :desc)}
   scope :old, -> {order(created_at: :asc)}
-  scope :favorites_count, -> {order(favorites: :desc)}
 
   def get_image
     unless image.attached?

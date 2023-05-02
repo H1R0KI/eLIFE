@@ -21,7 +21,6 @@
       <p>
         <%= link_to '新しい順', posts_path(latest: "true"), class: "text-dark" %>
         |<%= link_to '古い順', posts_path(old: "true"), class: "text-dark" %>
-        |<%= link_to 'イイね順', posts_path(favorites_count: "true"), class: "text-dark" %>
       </p>
       <%= render 'post_list', post: @posts %>
     </div>
