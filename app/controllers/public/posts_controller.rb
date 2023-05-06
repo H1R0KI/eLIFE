@@ -21,19 +21,13 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts0 = Post.where(genre: 0)
-    @posts1 = Post.where(genre: 1)
-    @posts2 = Post.where(genre: 2)
-    @posts3 = Post.where(genre: 3)
-    @posts4 = Post.where(genre: 4)
-
-#    if params[:latest]
-#      @posts = Post.latest.page(params[:page]).per(5)
-#    elsif params[:old]
-#      @posts = Post.old.page(params[:page]).per(5)
-#    else
-#      @posts = Post.all.page(params[:page]).per(5)
-#    end
+    if params[:latest]
+      @posts = Post.latest.page(params[:page]).per(5)
+    elsif params[:old]
+      @posts = Post.old.page(params[:page]).per(5)
+    else
+      @posts = Post.all.page(params[:page]).per(5)
+    end
     @tags = Tag.all
   end
 

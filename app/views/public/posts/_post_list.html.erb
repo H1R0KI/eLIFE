@@ -1,8 +1,3 @@
-<% @posts0.each do |post| %>
-  <%= image_tag post.member.get_profile_image, size:"20x20" %>
-  <%= link_to post.member.name, member_path(post.member_id), class: "text-dark" %>
-  <%= link_to post.title, post_path(post.id), class: "text-dark" %>
-<% end %>
 <% @posts.each do |post| %>
   <% if post.member.is_deleted == false %>
     <div class="card-deck mb-3">
