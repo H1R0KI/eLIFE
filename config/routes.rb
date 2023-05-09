@@ -49,6 +49,9 @@ Rails.application.routes.draw do
       resources :post_comments, only: [:create, :destroy]
     end
 
+    #ジャンル
+    resources :genres,only: [:create, :destroy, :show]
+
     #タグ検索
     resources :tags do
       get 'posts', to: 'posts#search'
