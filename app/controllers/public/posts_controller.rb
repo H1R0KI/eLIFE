@@ -28,6 +28,7 @@ class Public::PostsController < ApplicationController
     else
       @posts = Post.all.page(params[:page]).per(5)
     end
+
     @tags = Tag.all
   end
 
@@ -77,7 +78,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :genre, :body, image: [])
+    params.require(:post).permit(:title, :genre_id, :body, image: [])
   end
 
 end

@@ -1,16 +1,17 @@
 class Public::GenresController < ApplicationController
+
   def create
     @genre = Genre.new(genre_params)
     @genre.save
     flash[:notice] = "通知：新しいジャンルを追加しました"
-    redirect_to genres_path
+    redirect_to root_path
   end
-  
+
   def destroy
     @genre = Genre.find(params[:id])
     @genre.destroy
     flash[:notice] = "通知：ジャンルを削除しました"
-    redirect_to genres_path
+    redirect_to root_path
   end
 
   def show
@@ -21,7 +22,7 @@ class Public::GenresController < ApplicationController
   private
 
   def genre_params
-    params.require(:genre).permit(:name)
+    params.permit(:name)
   end
 
 end
