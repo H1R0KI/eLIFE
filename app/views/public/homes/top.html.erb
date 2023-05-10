@@ -47,7 +47,7 @@
             <div class="card-body">
               <div id="post_<%= post.id %>">
                 <h5 class="mb-3"><%= link_to post.title, post_path(post.id), class: "text-dark" %></h5>
-                <div class="card-text small">ジャンル：<%= post.genre_i18n %>
+                <div class="card-text small">ジャンル：<%= link_to post.genre.name, genre_path(post.genre_id), class: "text-dark" %>
                   <span class="pl-5">
                     <i class="fas fa-tag"></i>
                     <% post.tags.each do |tag| %>

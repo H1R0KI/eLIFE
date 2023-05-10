@@ -28,8 +28,7 @@ class Public::PostsController < ApplicationController
     else
       @posts = Post.all.page(params[:page]).per(5)
     end
-
-    @tags = Tag.all
+    @genres = Genre.all
   end
 
   def show
