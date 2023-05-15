@@ -1,3 +1,5 @@
 <% @genres.each do |genre| %>
-  <li class="ml-4 mb-1"><%= link_to genre.name, genre_path(genre.id), class: "text-dark" %> (<%= genre.posts.count %>)</li>
+  <table class="table table-border">
+    <tr><%= link_to genre.name, genre_path(genre.id), class: "text-dark" %> (<%= genre.posts.count %>)</tr>
+  </table>
 <% end %>
