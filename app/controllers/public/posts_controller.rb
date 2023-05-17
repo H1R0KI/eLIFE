@@ -21,11 +21,12 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    if params[:latest]
+    #投稿一覧の並び替え
+    if params[:latest] #新しい順
       @posts = Post.latest.page(params[:page]).per(5)
-    elsif params[:old]
+    elsif params[:old] #古い順
       @posts = Post.old.page(params[:page]).per(5)
-    else
+    else 
       @posts = Post.all.page(params[:page]).per(5)
     end
     @genres = Genre.all

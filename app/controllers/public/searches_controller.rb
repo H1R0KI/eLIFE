@@ -17,8 +17,8 @@ class Public::SearchesController < ApplicationController
 
   def item_search
     @keyword = params[:keyword]
-
-    if @keyword.length.to_i >= 2
+    #キーワードの文字数による分岐条件
+    if @keyword.length.to_i >= 2 #２文字以上の場合のみ検索結果を
       @items = RakutenWebService::Ichiba::Item.search(keyword: params[:keyword])
     else
       flash[:notice] = "通知：キーワードは2文字以上で検索して下さい"
