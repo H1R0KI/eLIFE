@@ -5,12 +5,14 @@
   <% elsif member.is_deleted == false %> <!--退会ユーザーを一覧に表示しない為の分岐-->
     <tr id="member_<%= member.id %>">
       <td class="text-center align-middle", style="width: 15%">
-        <%= image_tag member.get_profile_image, size:"70x70" %></br>
-        <%= link_to member.name, member_path(member.id), class: "text-dark" %>
+        <%= link_to member_path(member.id), class: "text-dark" do %>
+          <%= image_tag member.get_profile_image, size:"70x70" %></br>
+          <%= member.name %>
+        <% end %>
       </td>
       <td class="text-center align-middle follow_btn", style="width: 20%">
       <% if member_signed_in? && current_member.name != "ゲスト" %>
-        <% if member != current_member %> <!--自分以外のユーザーにはフォローボタンを表示-->
+        <% if member != current_member %>  <!--自分以外のユーザーにはフォローボタンを表示-->
           <%= render 'public/follows/follow_btn', member: member %>
         <% else %> <!--自分にはマイページへのリンクを表示-->
           <%= link_to member_path(current_member), class: "font-weight-bold btn btn-sm btn-secondary rounded-pill" do %>
@@ -25,7 +27,7 @@
         フォロワー：<%= link_to member.followers.count, member_followers_path(member), class: "text-dark" %>
       </td>
       <td class="align-middle">
-        <% if member.introduction == nil or member.introduction == "" %>
+        <% if member.introduction == nil or member.introduction == "" %> <!--自己紹介が空欄の場合の分岐-->
           <span class="text-secondary small">自己紹介文がありません。</span>
         <% else %>
           <%= member.introduction %>
@@ -37,3 +39,11 @@
   <% end %>
 <% end %>
 </table>
+
+<script>
+  $('tr').addClass('clickable') .click(function(e) {
+      if (!$(e.target).is('a')) {
+        window.location = $(e.target).closest('tr').data('href');}
+      };
+  });
+</script>
